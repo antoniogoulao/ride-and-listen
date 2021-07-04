@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/antoniogoulao/ride-and-listen/main/assets/yamaha_logo.jpeg"/></p>
 
-<h1 align="center">Ride & Listen</h1>
+<a href="https://antoniogoulao.github.io/ride-and-listen/"><h1 align="center">Ride & Listen</h1></a>
 
 Chill while you listen to some local radios and watch me riding through Portugal. This is a website inspired by [Drive and Listen](https://driveandlisten.herokuapp.com).
 
