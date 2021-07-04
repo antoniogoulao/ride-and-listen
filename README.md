@@ -2,7 +2,7 @@
 
 <h1 align="center">Ride & Listen</h1>
 
-This is an website app inspired by [Drive and Listen](https://driveandlisten.herokuapp.com).
+Chill while you listen to some local radios and watch me riding through Portugal. This is a website inspired by [Drive and Listen](https://driveandlisten.herokuapp.com).
 
 ### How did I get the radio urls?
 
