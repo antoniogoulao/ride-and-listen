@@ -65,4 +65,4 @@ function changeVideoSource(videoId) {
 }
 
 updateCitiesList();
-setVolume(60);
+setVolume(50);
