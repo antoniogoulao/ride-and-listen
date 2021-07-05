@@ -2,7 +2,7 @@ LOCATIONS = [ // http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3
 	{
 		"id": 3,
 		"name": "Castelo de Vide, Alentejo",
-		"videoId": "tVyINffaHQM",
+		"videoId": "rFshlSZQ7cU",
 		"radio": {
 			"url": "https://centova.radios.pt/proxy/435?mp=/stream/1/",
 			"name": "SBSR"
