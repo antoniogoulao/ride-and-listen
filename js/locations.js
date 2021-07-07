@@ -1,7 +1,7 @@
 LOCATIONS = [ // http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3
 	{
 		"id": 3,
-		"name": "Castelo de Vide, Alentejo",
+		"name": "Portagem (Marvão) -> Castelo de Vide, Alentejo",
 		"videoId": "rFshlSZQ7cU",
 		"radio": {
 			"url": "https://centova.radios.pt/proxy/435?mp=/stream/1/",
@@ -9,17 +9,17 @@ LOCATIONS = [ // http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3
 		},
 		"startTime": 13
 	},
-	/*{
+	{
 		"id": 10,
-		"name": "Budapest, Hungary",
-		"videoId": "dHbLCfbdUVo",
+		"name": "Glória -> Santarém, Ribatejo",
+		"videoId": "wcFrsemxPu8",
 		"radio": {
-			"url": "http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3",
-			"name": "103.9 Best FM"
+			"url": "https://mcrscast1.mcr.iol.pt/comercial.mp3",
+			"name": "Comercial"
 		},
 		"startTime": 29
 	},
-	{
+	/*{
 		"id": 7,
 		"name": "Dubai, United Arab Emirates",
 		"videoId": "JXe-1dIlCw4",
