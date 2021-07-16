@@ -1,25 +1,13 @@
-LOCATIONS = [ // http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3
+export const VIDEOS = [
 	{
-		"id": 3,
-		"name": "Castelo de Vide, Alentejo",
+		"name": "Portagem (Marvão) -> Castelo de Vide, Alentejo",
 		"videoId": "rFshlSZQ7cU",
-		"radio": {
-			"url": "https://centova.radios.pt/proxy/435?mp=/stream/1/",
-			"name": "SBSR"
-		},
-		"startTime": 13
+	},
+	{
+		"name": "Glória -> Santarém, Ribatejo",
+		"videoId": "wcFrsemxPu8",
 	},
 	/*{
-		"id": 10,
-		"name": "Budapest, Hungary",
-		"videoId": "dHbLCfbdUVo",
-		"radio": {
-			"url": "http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3",
-			"name": "103.9 Best FM"
-		},
-		"startTime": 29
-	},
-	{
 		"id": 7,
 		"name": "Dubai, United Arab Emirates",
 		"videoId": "JXe-1dIlCw4",
@@ -111,13 +99,13 @@ LOCATIONS = [ // http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3
 	}*/
 ]
 
-function chooseRandomLocation() {
+/*export const chooseRandomLocation = () => {
 	const availableLocations = LOCATIONS.filter(({id}) => state.currentLocation ? state.currentLocation.id !== id : true);
 	
 	return availableLocations[Math.floor(Math.random() * availableLocations.length)];
 }
 
-function changeLocation(locationId) {
+export const changeLocation = (locationId: string) => {
 	if (state.currentLocation && locationId == state.currentLocation.id)
 		return;
 
@@ -132,4 +120,4 @@ function changeLocation(locationId) {
 	changeRadio(location.radio);
 	toggleActiveClassOnLocation(location.id);
 	playVideo(location);
-}
+}*/
