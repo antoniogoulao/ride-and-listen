@@ -43,7 +43,7 @@ const YoutubeWrapper = () => {
                     width: '100%',
                     playerVars: {
                         // https://developers.google.com/youtube/player_parameters
-                        autoplay: 0,
+                        autoplay: 1,
                         controls: 0,
                         mute: 0,
                         loop: 1,
