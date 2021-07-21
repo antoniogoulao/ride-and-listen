@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 import { RADIOS } from "./radios";
 import { Radio, Speed, Video } from "./types";
 import { VIDEOS } from "./videos";
@@ -18,9 +18,9 @@ export const videosState = atom<Video[]>({
     default: VIDEOS
 })
 
-export const selectedRadioState = atom<string>({
+export const selectedRadioState = atom<Radio>({
     key: 'selectedRadioState',
-    default: ''
+    default: RADIOS[0]
 })
 
 export const radiosState = atom<Radio[]>({
@@ -33,6 +33,11 @@ export const radioVolumeState = atom<number>({
     default: 50
 })
 
+export const radioPlayState = atom<boolean>({
+    key: 'radioPlayState',
+    default: true
+})
+
 export const videoMuteState = atom<0 | 1>({
     key: 'videoMuteState',
     default: 1
@@ -42,3 +47,11 @@ export const videoSpeedState = atom<Speed>({
     key: 'videoSpeedState',
     default: 1
 })
+
+export const radioSelector = selector({
+    key: 'radioSelector',
+    get: ({get}) => get(selectedRadioState),
+    set: ({ set }, id) => 
+        set(selectedRadioState, (RADIOS.find(elem => elem.id === id) as Radio)),
+    
+});

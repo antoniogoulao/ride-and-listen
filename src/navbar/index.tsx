@@ -8,9 +8,11 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { radiosState, selectedRadioState, selectedVideoState, showBottomBarState, videoMuteState, videosState } from '../atoms';
-import { FormControl, MenuItem, Select, Typography } from '@material-ui/core';
+import { radioPlayState, showBottomBarState, videoMuteState } from '../atoms';
 import Volume from './components/Volume';
+import {  PauseCircleOutline, PlayCircleOutline } from '@material-ui/icons';
+import RadioSelector from './components/RadioSelector';
+import VideoSelector from './components/VideoSelector';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -27,26 +29,15 @@ const useStyles = makeStyles((theme: Theme) =>
             left: 0,
             margin: theme.spacing(1, 3),
         },
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
-        },
-        selectEmpty: {
-            marginTop: theme.spacing(2),
-        },
     }),
 );
 
 const NavBar = () => {
     const classes = useStyles();
     const showBottomBar = useRecoilValue(showBottomBarState);
-    const selectedVideo = useRecoilValue(selectedVideoState);
-    const selectedRadio = useRecoilValue(selectedRadioState);
-    const videos = useRecoilValue(videosState);
-    const radios = useRecoilValue(radiosState);
+    const isRadioPlay = useRecoilValue(radioPlayState);
     const setShowBottomBar = useSetRecoilState(showBottomBarState);
-    const setSelectedVideo = useSetRecoilState(selectedVideoState);
-    const setSelectedRadio = useSetRecoilState(selectedRadioState);
+    const setRadioPlay = useSetRecoilState(radioPlayState);
     const isVideoMute = useRecoilValue(videoMuteState);
     const setVideoMute = useSetRecoilState(videoMuteState);
 
@@ -66,33 +57,14 @@ const NavBar = () => {
                 <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={() => setShowBottomBar(false)}>
                     <VisibilityOffIcon />
                 </IconButton>
-                <FormControl className={classes.formControl}>
-                    <Select
-                        value={selectedVideo}
-                        onChange={(event) => setSelectedVideo(event.target.value as string)}
-                        displayEmpty
-                        className={classes.selectEmpty}
-                        inputProps={{ 'aria-label': 'Select video' }}
-                    >
-                        {videos.map(({ videoId, name }) => <MenuItem value={videoId}><Typography>{name}</Typography></MenuItem>)}
-
-                    </Select>
-                </FormControl>
+                <VideoSelector />
                 <IconButton edge="end" color="inherit" onClick={() => setVideoMute(isVideoMute === 1 ? 0 : 1)}>
                     {isVideoMute === 1 ? <VolumeUpIcon /> : <VolumeOffIcon />}
                 </IconButton>
-                <FormControl className={classes.formControl}>
-                    <Select
-                        value={selectedRadio}
-                        onChange={(event) => setSelectedRadio(event.target.value as string)}
-                        displayEmpty
-                        className={classes.selectEmpty}
-                        inputProps={{ 'aria-label': 'Select video' }}
-                    >
-                        {radios.map(({ url, name }) => <MenuItem value={url}><Typography>{name}</Typography></MenuItem>)}
-
-                    </Select>
-                </FormControl>
+                <IconButton edge="end" color="inherit" onClick={() => setRadioPlay(!isRadioPlay)}>
+                    {isRadioPlay ? <PauseCircleOutline /> : <PlayCircleOutline />}
+                </IconButton>
+                <RadioSelector />
                 <Volume />
             </Toolbar>
         </AppBar>

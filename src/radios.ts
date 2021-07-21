@@ -1,9 +1,11 @@
 export const RADIOS = [
     {
+        "id": 1,
         "url": "https://centova.radios.pt/proxy/435?mp=/stream/1/",
         "name": "SBSR"
     },
     {
+        "id": 2,
         "url": "https://mcrscast1.mcr.iol.pt/comercial.mp3",
         "name": "Comercial"
     },
