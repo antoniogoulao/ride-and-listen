@@ -7,6 +7,10 @@ export const VIDEOS = [
 		"name": "Glória -> Santarém, Ribatejo",
 		"videoId": "wcFrsemxPu8",
 	},
+	{
+		"name": "Caldas da Rainha -> Ferraria de São João, Centro",
+		"videoId": "HQpDZfXMIu4",
+	}
 	/*{
 		"id": 7,
 		"name": "Dubai, United Arab Emirates",
