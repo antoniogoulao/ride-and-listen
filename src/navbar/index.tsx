@@ -9,8 +9,8 @@ import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { radiosState, selectedRadioState, selectedVideoState, showBottomBarState, videoMuteState, videosState } from '../atoms';
-import React from 'react';
-import { FormControl, MenuItem, Select } from '@material-ui/core';
+import { FormControl, MenuItem, Select, Typography } from '@material-ui/core';
+import Volume from './components/Volume';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -74,11 +74,13 @@ const NavBar = () => {
                         className={classes.selectEmpty}
                         inputProps={{ 'aria-label': 'Select video' }}
                     >
-                        {videos.map(({ videoId, name }) => <MenuItem value={videoId}>{name}</MenuItem>)}
+                        {videos.map(({ videoId, name }) => <MenuItem value={videoId}><Typography>{name}</Typography></MenuItem>)}
 
                     </Select>
                 </FormControl>
-
+                <IconButton edge="end" color="inherit" onClick={() => setVideoMute(isVideoMute === 1 ? 0 : 1)}>
+                    {isVideoMute === 1 ? <VolumeUpIcon /> : <VolumeOffIcon />}
+                </IconButton>
                 <FormControl className={classes.formControl}>
                     <Select
                         value={selectedRadio}
@@ -87,13 +89,11 @@ const NavBar = () => {
                         className={classes.selectEmpty}
                         inputProps={{ 'aria-label': 'Select video' }}
                     >
-                        {radios.map(({ url, name }) => <MenuItem value={url}>{name}</MenuItem>)}
+                        {radios.map(({ url, name }) => <MenuItem value={url}><Typography>{name}</Typography></MenuItem>)}
 
                     </Select>
                 </FormControl>
-                <IconButton edge="end" color="inherit" onClick={() => setVideoMute(isVideoMute === 1 ? 0 : 1)}>
-                    {isVideoMute === 1 ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                </IconButton>
+                <Volume />
             </Toolbar>
         </AppBar>
     )

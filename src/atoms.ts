@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 import { RADIOS } from "./radios";
-import { Radio, Video } from "./types";
+import { Radio, Speed, Video } from "./types";
 import { VIDEOS } from "./videos";
 
 export const showBottomBarState = atom<boolean>({
@@ -28,7 +28,17 @@ export const radiosState = atom<Radio[]>({
     default: RADIOS
 })
 
-export const videoMuteState = atom<0|1>({
+export const radioVolumeState = atom<number>({
+    key: 'radioVolumeState',
+    default: 50
+})
+
+export const videoMuteState = atom<0 | 1>({
     key: 'videoMuteState',
+    default: 1
+})
+
+export const videoSpeedState = atom<Speed>({
+    key: 'videoSpeedState',
     default: 1
 })

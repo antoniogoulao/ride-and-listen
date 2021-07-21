@@ -1,7 +1,7 @@
 import YouTube from 'react-youtube';
 import { makeStyles } from '@material-ui/styles';
 import { useRecoilValue } from 'recoil';
-import { selectedVideoState, videoMuteState } from '../atoms';
+import { selectedVideoState, videoMuteState, videoSpeedState } from '../atoms';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { YouTubePlayer } from 'youtube-player/dist/types';
@@ -18,11 +18,16 @@ const YoutubeWrapper = () => {
     const classes = useStyles();
     const id = useRecoilValue(selectedVideoState);
     const isMute = useRecoilValue(videoMuteState);
+    const speed = useRecoilValue(videoSpeedState);
     const [player, setPlayer] = useState<YouTubePlayer>();
 
     useEffect(() => {
         player?.isMuted() ? player?.unMute() : player?.mute()
     }, [isMute, player])
+
+    useEffect(() => {
+        player?.setPlaybackRate(speed);
+    }, [player, speed])
 
     const onReady = (event: { target: YouTubePlayer }) => {
         setPlayer(event.target);
@@ -38,7 +43,7 @@ const YoutubeWrapper = () => {
                     width: '100%',
                     playerVars: {
                         // https://developers.google.com/youtube/player_parameters
-                        autoplay: 1,
+                        autoplay: 0,
                         controls: 0,
                         mute: 0,
                         loop: 1,
