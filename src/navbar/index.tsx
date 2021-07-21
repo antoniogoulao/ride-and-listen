@@ -50,8 +50,6 @@ const NavBar = () => {
     const isVideoMute = useRecoilValue(videoMuteState);
     const setVideoMute = useSetRecoilState(videoMuteState);
 
-    console.log('debug', videos)
-
     if (!showBottomBar) {
         return (
             <div className={classes.hiddenBar}>

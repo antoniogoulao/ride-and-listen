@@ -2,6 +2,9 @@ import YouTube from 'react-youtube';
 import { makeStyles } from '@material-ui/styles';
 import { useRecoilValue } from 'recoil';
 import { selectedVideoState, videoMuteState } from '../atoms';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { YouTubePlayer } from 'youtube-player/dist/types';
 
 const useStyles = makeStyles({
     videoDiv: {
@@ -15,10 +18,20 @@ const YoutubeWrapper = () => {
     const classes = useStyles();
     const id = useRecoilValue(selectedVideoState);
     const isMute = useRecoilValue(videoMuteState);
+    const [player, setPlayer] = useState<YouTubePlayer>();
+
+    useEffect(() => {
+        player?.isMuted() ? player?.unMute() : player?.mute()
+    }, [isMute, player])
+
+    const onReady = (event: { target: YouTubePlayer }) => {
+        setPlayer(event.target);
+    }
 
     return (
         <YouTube videoId={id}
             containerClassName={classes.videoDiv}
+            onReady={onReady}
             opts={
                 {
                     height: '100%',
@@ -27,7 +40,7 @@ const YoutubeWrapper = () => {
                         // https://developers.google.com/youtube/player_parameters
                         autoplay: 1,
                         controls: 0,
-                        mute: isMute,
+                        mute: 0,
                         loop: 1,
                     },
                 }} />
