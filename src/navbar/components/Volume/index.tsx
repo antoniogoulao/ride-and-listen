@@ -20,13 +20,13 @@ const Volume = () => {
 
     return (
         <Box sx={{ width: 200 }} display="flex" alignItems="center">
-            <IconButton onClick={() => handleVolumeChange(setVolume)(null, volume - 10)}>
+            <IconButton onClick={() => handleVolumeChange(setVolume)(null, volume - 10)} aria-label="volume down">
                 <VolumeDown color='secondary' />
             </IconButton>
 
             <Slider min={0} max={100} value={volume} onChange={handleVolumeChange(setVolume)} aria-labelledby="Volume" color="secondary" />
 
-            <IconButton onClick={() => handleVolumeChange(setVolume)(null, (volume + 10))}>
+            <IconButton onClick={() => handleVolumeChange(setVolume)(null, (volume + 10))} aria-label="volume up">
                 <VolumeUp color='secondary' />
             </IconButton>
 
