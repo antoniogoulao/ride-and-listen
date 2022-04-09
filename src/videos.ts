@@ -1,24 +1,16 @@
-LOCATIONS = [ // http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3
+export const VIDEOS = [
 	{
-		"id": 3,
 		"name": "Portagem (Marvão) -> Castelo de Vide, Alentejo",
 		"videoId": "rFshlSZQ7cU",
-		"radio": {
-			"url": "https://centova.radios.pt/proxy/435?mp=/stream/1/",
-			"name": "SBSR"
-		},
-		"startTime": 13
 	},
 	{
-		"id": 10,
 		"name": "Glória -> Santarém, Ribatejo",
 		"videoId": "wcFrsemxPu8",
-		"radio": {
-			"url": "https://mcrscast1.mcr.iol.pt/comercial.mp3",
-			"name": "Comercial"
-		},
-		"startTime": 29
 	},
+	{
+		"name": "Caldas da Rainha -> Ferraria de São João, Centro",
+		"videoId": "HQpDZfXMIu4",
+	}
 	/*{
 		"id": 7,
 		"name": "Dubai, United Arab Emirates",
@@ -110,26 +102,3 @@ LOCATIONS = [ // http://stream1.bestfmbudapest.hu/bestfm_nyiregyhaza.mp3
 		"startTime": 55
 	}*/
 ]
-
-function chooseRandomLocation() {
-	const availableLocations = LOCATIONS.filter(({id}) => state.currentLocation ? state.currentLocation.id !== id : true);
-	
-	return availableLocations[Math.floor(Math.random() * availableLocations.length)];
-}
-
-function changeLocation(locationId) {
-	if (state.currentLocation && locationId == state.currentLocation.id)
-		return;
-
-	changeLoadingState(true);
-
-	const location = LOCATIONS.find(location => location.id == locationId);
-
-	state.currentLocation = location;
-
-	changeLocationText(location.name);
-	changeVideoSource(location.videoId);
-	changeRadio(location.radio);
-	toggleActiveClassOnLocation(location.id);
-	playVideo(location);
-}
