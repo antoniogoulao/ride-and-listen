@@ -18,12 +18,6 @@ I just add a simple line of css code to the iframe player
 }
 ```
 
-### How did I remove the youtube information such as youtube channel title and etc
-
-Just adding a height of 120% and removing the overflow of the page will remove the top and bottom youtube extra controllers.
-
-* You can see more of the magic by looking at the source code.
-
 
 # Getting Started with Create React App
 
