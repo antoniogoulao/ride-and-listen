@@ -3,7 +3,7 @@ import { VolumeUp, VolumeDown } from '@mui/icons-material';
 import { SetterOrUpdater, useRecoilValue, useSetRecoilState } from 'recoil';
 import { radioVolumeState } from '../../../atoms';
 import { Box } from '@mui/system';
-import { Grid, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 
 
 const handleVolumeChange = (setVolume: SetterOrUpdater<number>) => (_: any, value: number | number[]) => {
