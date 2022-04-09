@@ -102,26 +102,3 @@ export const VIDEOS = [
 		"startTime": 55
 	}*/
 ]
-
-/*export const chooseRandomLocation = () => {
-	const availableLocations = LOCATIONS.filter(({id}) => state.currentLocation ? state.currentLocation.id !== id : true);
-	
-	return availableLocations[Math.floor(Math.random() * availableLocations.length)];
-}
-
-export const changeLocation = (locationId: string) => {
-	if (state.currentLocation && locationId == state.currentLocation.id)
-		return;
-
-	changeLoadingState(true);
-
-	const location = LOCATIONS.find(location => location.id == locationId);
-
-	state.currentLocation = location;
-
-	changeLocationText(location.name);
-	changeVideoSource(location.videoId);
-	changeRadio(location.radio);
-	toggleActiveClassOnLocation(location.id);
-	playVideo(location);
-}*/
