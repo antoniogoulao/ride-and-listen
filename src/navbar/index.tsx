@@ -52,7 +52,7 @@ const NavBar = () => {
                         </IconButton>
                         <Typography color="secondary">Hide</Typography>
                     </Box>
-                    <Box display='flex' flexDirection='column' alignItems='center' marginLeft={2}>
+                    <Box display='flex' flexDirection='column' alignItems='center' marginX={2} minWidth='max-content'>
                         <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} aria-label="enable/disable dark mode">
                             {theme.palette.mode === 'dark' ? <Brightness7 color='secondary' /> : <Brightness4 color='secondary' />}
                         </IconButton>

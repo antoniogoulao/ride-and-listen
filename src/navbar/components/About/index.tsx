@@ -3,7 +3,7 @@ import { GitHub, Twitter, Mail, Language } from '@mui/icons-material';
 
 const About = () => {
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', minWidth: 'max-content', marginX: 2 }}>
             <Typography>António Goulão</Typography>
             <Box>
                 <Link marginX={0.25} aria-label="project github repo" target="blank" href="https://github.com/antoniogoulao/ride-and-listen"><GitHub color="secondary" /></Link>
