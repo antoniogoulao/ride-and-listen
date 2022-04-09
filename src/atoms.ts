@@ -10,7 +10,7 @@ export const showBottomBarState = atom<boolean>({
 
 export const selectedVideoState = atom<string>({
     key: 'selectedVideoState',
-    default: 'rFshlSZQ7cU'
+    default: VIDEOS[Math.floor(Math.random() * VIDEOS.length)].videoId
 })
 
 export const videosState = atom<Video[]>({
@@ -35,7 +35,7 @@ export const radioVolumeState = atom<number>({
 
 export const radioPlayState = atom<boolean>({
     key: 'radioPlayState',
-    default: true
+    default: false
 })
 
 export const videoMuteState = atom<0 | 1>({

@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { createRef } from "react";
 import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
@@ -22,10 +23,9 @@ const RadioWrapper = () => {
             radioPlay ? audio.play() : audio.pause();
         }
     }, [audioRef, radioPlay]);
-    console.log(selectedRadio);
 
     return (
-        <audio ref={audioRef} autoPlay id="audio" preload="metadata" src={selectedRadio?.url} title={selectedRadio?.name}><p>Your browser does not support the <code>audio</code> element.</p></audio>
+        <audio ref={audioRef} autoPlay id="audio" preload="metadata" src={selectedRadio?.url} title={selectedRadio?.name}><Typography>Your browser does not support the <code>audio</code> element.</Typography></audio>
     )
 }
 

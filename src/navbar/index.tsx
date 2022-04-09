@@ -1,39 +1,14 @@
 
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VolumeOffIcon from '@material-ui/icons/VolumeOff';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import { PauseCircleOutline, PlayCircleOutline, VolumeUp, VolumeOff, VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { radioPlayState, showBottomBarState, videoMuteState } from '../atoms';
-import Volume from './components/Volume';
-import {  PauseCircleOutline, PlayCircleOutline } from '@material-ui/icons';
 import RadioSelector from './components/RadioSelector';
 import VideoSelector from './components/VideoSelector';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        appBar: {
-            top: 'auto',
-            bottom: 0,
-        },
-        grow: {
-            flexGrow: 1,
-        },
-        hiddenBar: {
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            margin: theme.spacing(1, 3),
-        },
-    }),
-);
+import Volume from './components/Volume';
 
 const NavBar = () => {
-    const classes = useStyles();
     const showBottomBar = useRecoilValue(showBottomBarState);
     const isRadioPlay = useRecoilValue(radioPlayState);
     const setShowBottomBar = useSetRecoilState(showBottomBarState);
@@ -41,31 +16,48 @@ const NavBar = () => {
     const isVideoMute = useRecoilValue(videoMuteState);
     const setVideoMute = useSetRecoilState(videoMuteState);
 
+    const handleVideoSoundToggle = () => {
+        isVideoMute === 1 && setRadioPlay(false); 
+        setVideoMute(isVideoMute === 1 ? 0 : 1);
+    }
+
     if (!showBottomBar) {
         return (
-            <div className={classes.hiddenBar}>
-                <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={() => setShowBottomBar(true)}>
-                    <VisibilityIcon />
+            <Box sx={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                marginLeft: 6,
+                marginBottom: 3}}>
+                <IconButton aria-label="open controls bar" onClick={() => setShowBottomBar(true)} sx={{backgroundColor: '#ffffff40'}}>
+                    <VisibilityOutlined />
                 </IconButton>
-            </div>
+            </Box>
         )
     }
 
     return (
-        <AppBar position="fixed" color="primary" className={classes.appBar}>
-            <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={() => setShowBottomBar(false)}>
-                    <VisibilityOffIcon />
-                </IconButton>
-                <VideoSelector />
-                <IconButton edge="end" color="inherit" onClick={() => setVideoMute(isVideoMute === 1 ? 0 : 1)}>
-                    {isVideoMute === 1 ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                </IconButton>
-                <IconButton edge="end" color="inherit" onClick={() => setRadioPlay(!isRadioPlay)}>
-                    {isRadioPlay ? <PauseCircleOutline /> : <PlayCircleOutline />}
-                </IconButton>
-                <RadioSelector />
-                <Volume />
+        <AppBar position="fixed" color="primary" sx={{top: 'auto', bottom: 0, overflowX: 'scroll'}}>
+            <Toolbar sx={{flex: 1, justifyContent: 'space-between', paddingBottom: 1}} >
+                <Box sx={{ display: 'flex', alignItems: 'center'}}>
+                    <Box display='flex' flexDirection='column' alignItems='center'>
+                        <IconButton aria-label="hide controls bar" onClick={() => setShowBottomBar(false)}>
+                            <VisibilityOffOutlined color='secondary' />
+                        </IconButton>
+                        <Typography color="secondary">Hide</Typography>
+                    </Box>
+                    <VideoSelector />
+                    <IconButton aria-label="mute video sound" onClick={handleVideoSoundToggle}>
+                        {isVideoMute === 1 ? <VolumeOff color='secondary' /> : <VolumeUp color='secondary' />}
+                    </IconButton>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center'}}>
+                    <IconButton aria-label="play/pause radio" onClick={() => setRadioPlay(!isRadioPlay)}>
+                        {isRadioPlay ? <PauseCircleOutline color='secondary' /> : <PlayCircleOutline color='secondary' />}
+                    </IconButton>
+                    <RadioSelector />
+                    <Volume />
+                </Box>
             </Toolbar>
         </AppBar>
     )
