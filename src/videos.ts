@@ -10,6 +10,10 @@ export const VIDEOS = [
 	{
 		"name": "Caldas da Rainha -> Ferraria de São João, Centro",
 		"videoId": "HQpDZfXMIu4",
+	},
+	{
+		"name": "Estoril -> Cabo da Roca",
+		"videoId": "439qquhh2Mg",
 	}
 	/*{
 		"id": 7,
