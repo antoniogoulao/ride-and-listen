@@ -38,9 +38,9 @@ export const radioPlayState = atom<boolean>({
     default: false
 })
 
-export const videoMuteState = atom<0 | 1>({
+export const videoMuteState = atom<boolean>({
     key: 'videoMuteState',
-    default: 1
+    default: true
 })
 
 export const videoSpeedState = atom<Speed>({

@@ -1,31 +1,28 @@
-import { Typography } from "@mui/material";
 import { createRef } from "react";
 import { useEffect } from "react";
+import ReactAudioPlayer from "react-audio-player";
 import { useRecoilValue } from "recoil";
 import { radioPlayState, radioVolumeState, selectedRadioState } from "../atoms";
 
 const RadioWrapper = () => {
     const radioVolume = useRecoilValue(radioVolumeState);
-    const radioPlay = useRecoilValue(radioPlayState);
+    const isRadioPlay = useRecoilValue(radioPlayState);
     const selectedRadio = useRecoilValue(selectedRadioState);
-    const audioRef = createRef<HTMLAudioElement>();
+    const audioRef = createRef<ReactAudioPlayer>();
 
     useEffect(() => {
-        const audio = audioRef.current;
-        if (audio !== null) {
-            audio.volume = (radioVolume / 100);
-        }
-    }, [audioRef, radioVolume]);
-
-    useEffect(() => {
-        const audio = audioRef.current;
-        if (audio !== null) {
-            radioPlay ? audio.play() : audio.pause();
-        }
-    }, [audioRef, radioPlay]);
+        isRadioPlay ? audioRef.current?.audioEl.current?.play() : audioRef.current?.audioEl.current?.pause();
+    }, [audioRef, isRadioPlay] );
 
     return (
-        <audio ref={audioRef} autoPlay id="audio" preload="metadata" src={selectedRadio?.url} title={selectedRadio?.name}><Typography>Your browser does not support the <code>audio</code> element.</Typography></audio>
+        <ReactAudioPlayer
+                    key={selectedRadio?.name}
+                    ref={audioRef}
+                    id='audio'
+                    src={selectedRadio?.url}
+                    autoPlay={isRadioPlay}
+                    volume={radioVolume / 100.0}
+                    controls={false}/>
     )
 }
 

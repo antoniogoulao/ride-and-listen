@@ -22,8 +22,13 @@ const NavBar = () => {
     const colorMode = useContext(ColorModeContext);
 
     const handleVideoSoundToggle = () => {
-        isVideoMute === 1 && setRadioPlay(false);
-        setVideoMute(isVideoMute === 1 ? 0 : 1);
+        isVideoMute && setRadioPlay(false);
+        setVideoMute(!isVideoMute);
+    }
+
+    const handleRadioActionToggle = () => {
+        !isRadioPlay && setVideoMute(true);
+        setRadioPlay(!isRadioPlay);
     }
 
     if (!showBottomBar) {
@@ -60,12 +65,12 @@ const NavBar = () => {
                     </Box>
                     <VideoSelector />
                     <IconButton aria-label="mute video sound" onClick={handleVideoSoundToggle}>
-                        {isVideoMute === 1 ? <VolumeOff color='secondary' /> : <VolumeUp color='secondary' />}
+                        {isVideoMute ? <VolumeOff color='secondary' /> : <VolumeUp color='secondary' />}
                     </IconButton>
                 </Box>
                 <About />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <IconButton aria-label="play/pause radio" onClick={() => setRadioPlay(!isRadioPlay)}>
+                    <IconButton aria-label="play/pause radio" onClick={handleRadioActionToggle}>
                         {isRadioPlay ? <PauseCircleOutline color='secondary' /> : <PlayCircleOutline color='secondary' />}
                     </IconButton>
                     <RadioSelector />

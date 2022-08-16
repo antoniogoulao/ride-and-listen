@@ -14,6 +14,13 @@ export const VIDEOS = [
 	{
 		"name": "Estoril -> Cabo da Roca",
 		"videoId": "439qquhh2Mg",
+	},
+	{
+		"name": "Setúbal -> Arrábida -> Sesimbra",
+		"videoId": "B58KZ1koOOg",
+	}, {
+		"name": "Serra D'Arga",
+		"videoId": "p_TaRrCR1O0",
 	}
 	/*{
 		"id": 7,
