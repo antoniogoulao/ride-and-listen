@@ -11,7 +11,7 @@ export const RADIOS = [
     },
     {
         "id": 2,
-        "url": "https://21273.live.streamtheworld.com/RFM_SC",
+        "url": "https://22333.live.streamtheworld.com/RFM_SC",
         "name": "RFM"
     },
     {
@@ -51,7 +51,12 @@ export const RADIOS = [
     },
     {
         "id": 10,
-        "url": "http://www.hostsetubal.com:9956/;",
+        "url": "https://sp0.redeaudio.com/9956/;;/stream.mp3",
         "name": "105.4"
     },
+    {
+        "id": 11,
+        "url": "https://proic1.evspt.com/oxigenio_aac",
+        "name": "Oxigénio"
+    }
 ]
