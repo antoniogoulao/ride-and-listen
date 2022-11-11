@@ -33,7 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "npx browserslist@latest --update-db && rm -rf build && yarn build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
