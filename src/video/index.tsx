@@ -5,7 +5,7 @@ import { YouTubePlayer } from "youtube-player/dist/types";
 import { selectedVideoState, videoMuteState, videoSpeedState } from "../atoms";
 import { VIDEOS } from "../videos";
 
-const YoutubeWrapper = () => {
+export const YoutubeWrapper = () => {
   const id = useRecoilValue(selectedVideoState);
   const setSelectedVideo = useSetRecoilState(selectedVideoState);
   const isVideoMute = useRecoilValue(videoMuteState);
@@ -49,5 +49,3 @@ const YoutubeWrapper = () => {
     />
   );
 };
-
-export default YoutubeWrapper;
