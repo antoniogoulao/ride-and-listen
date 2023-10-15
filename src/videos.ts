@@ -30,6 +30,10 @@ export const VIDEOS: Video[] = [
     videoId: "0rwRDGOXShM",
   },
   {
+    name: "Subida da Serra de Montejunto",
+    videoId: "Czlcw_A3anQ",
+  },
+  {
     name: "Passeio Festas da Glória 2023",
     videoId: "gGwBYDZUVqM",
   },
