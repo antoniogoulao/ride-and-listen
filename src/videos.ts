@@ -14,10 +14,6 @@ export const VIDEOS: Video[] = [
     videoId: "HQpDZfXMIu4",
   },
   {
-    name: "Estoril -> Cabo da Roca",
-    videoId: "439qquhh2Mg",
-  },
-  {
     name: "Setúbal -> Arrábida -> Sesimbra",
     videoId: "B58KZ1koOOg",
   },
@@ -36,5 +32,9 @@ export const VIDEOS: Video[] = [
   {
     name: "Passeio Festas da Glória 2023",
     videoId: "gGwBYDZUVqM",
+  },
+  {
+    name: "N621 até Riaño",
+    videoId: "RyqlEspPze8",
   },
 ];
