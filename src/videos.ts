@@ -37,4 +37,8 @@ export const VIDEOS: Video[] = [
     name: "N621 até Riaño",
     videoId: "RyqlEspPze8",
   },
+  {
+    name: "Passeio da Liberdade 2024",
+    videoId: "WsZmnbmZmxw",
+  },
 ];
