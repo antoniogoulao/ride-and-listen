@@ -23,7 +23,7 @@ export const RADIOS: Radio[] = [
   },
   {
     id: 4,
-    url: "https://20863.live.streamtheworld.com/MEGA_HITS_SC",
+    url: "https://27793.live.streamtheworld.com/MEGA_HITS_SC",
     name: "Mega Hits",
   },
   {
@@ -43,7 +43,7 @@ export const RADIOS: Radio[] = [
   },
   {
     id: 8,
-    url: "https://tsfdirecto.tsf.pt/tsfdirecto.mp3",
+    url: "https://directo.tsf.pt/tsfdirecto.mp3",
     name: "TSF",
   },
   {
@@ -53,7 +53,7 @@ export const RADIOS: Radio[] = [
   },
   {
     id: 10,
-    url: "https://sp0.redeaudio.com/9956/;;/stream.mp3",
+    url: "https://play.radioregional.pt:8220/stream/1/",
     name: "105.4",
   },
   {
