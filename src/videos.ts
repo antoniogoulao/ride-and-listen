@@ -41,4 +41,8 @@ export const VIDEOS: Video[] = [
     name: "Passeio da Liberdade 2024",
     videoId: "WsZmnbmZmxw",
   },
+  {
+    name: "Muge -> Cartaxo -> Santarém",
+    videoId: "42Lu81wmQOY"
+  },
 ];
