@@ -13,7 +13,7 @@ export const RADIOS: Radio[] = [
   },
   {
     id: 2,
-    url: "https://22333.live.streamtheworld.com/RFM_SC",
+    url: "https://playerservices.streamtheworld.com/api/livestream-redirect/RFM_SC",
     name: "RFM",
   },
   {
