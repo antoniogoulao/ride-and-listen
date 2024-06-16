@@ -14,35 +14,39 @@ export const VIDEOS: Video[] = [
     videoId: "HQpDZfXMIu4",
   },
   {
-    name: "Setúbal -> Arrábida -> Sesimbra",
+    name: "Setúbal -> Arrábida -> Sesimbra, AML",
     videoId: "B58KZ1koOOg",
   },
   {
-    name: "Serra D'Arga",
+    name: "Serra D'Arga, Minho",
     videoId: "p_TaRrCR1O0",
   },
   {
-    name: "Sierra de las Nieves",
+    name: "Sierra de las Nieves, Espanha",
     videoId: "0rwRDGOXShM",
   },
   {
-    name: "Subida da Serra de Montejunto",
+    name: "Subida da Serra de Montejunto, Estremadura",
     videoId: "Czlcw_A3anQ",
   },
   {
-    name: "Passeio Festas da Glória 2023",
+    name: "Passeio Festas da Glória 2023, Ribatejo",
     videoId: "gGwBYDZUVqM",
   },
   {
-    name: "N621 até Riaño",
+    name: "N621 até Riaño, Espanha",
     videoId: "RyqlEspPze8",
   },
   {
-    name: "Passeio da Liberdade 2024",
+    name: "Passeio da Liberdade 2024, Ribatejo",
     videoId: "WsZmnbmZmxw",
   },
   {
-    name: "Muge -> Cartaxo -> Santarém",
+    name: "Muge -> Cartaxo -> Santarém, Ribatejo",
     videoId: "42Lu81wmQOY"
   },
+  {
+    name: "Fátima -> Alcanena, Ribatejo",
+    videoId: "C3019-dH1KA"
+  }
 ];
