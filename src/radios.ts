@@ -8,8 +8,8 @@ export const RADIOS: Radio[] = [
   },
   {
     id: 1,
-    url: "https://centova.radios.pt/proxy/435?mp=/stream/1/",
-    name: "SBSR",
+    url: "https://stream-icy.bauermedia.pt/batidafm.aac",
+    name: "Batida",
   },
   {
     id: 2,
