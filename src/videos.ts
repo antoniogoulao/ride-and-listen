@@ -50,8 +50,12 @@ export const VIDEOS: Video[] = [
     videoId: 'C3019-dH1KA',
   },
   {
-    name: 'N222 Parte 1',
+    name: 'N222 - Parte 1, Norte',
     videoId: 'jeOMmeKCHPg',
+  },
+  {
+    name: 'N222 - Parte 2, Norte',
+    videoId: 'GpE0HKhnodw',
   },
   {
     name: 'N118 -> Salvaterra de Magos -> Santarém, Ribatejo',
