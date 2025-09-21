@@ -34,6 +34,10 @@ export const VIDEOS: Video[] = [
     videoId: 'gGwBYDZUVqM',
   },
   {
+    name: 'Passeio Festas da Glória 2025, Ribatejo',
+    videoId: '16iaIteNvb0',
+  },
+  {
     name: 'N621 até Riaño, Espanha',
     videoId: 'RyqlEspPze8',
   },

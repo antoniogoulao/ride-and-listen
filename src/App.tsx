@@ -1,22 +1,22 @@
-import { RecoilRoot } from "recoil";
-import { YoutubeWrapper } from "./video";
-import { RadioWrapper } from "./radio";
-import { NavBar } from "./navbar";
-import { lightBlue, yellow } from "@mui/material/colors";
-import { Box, createTheme, PaletteMode, ThemeProvider } from "@mui/material";
-import { createContext, useMemo, useState } from "react";
+import { YoutubeWrapper } from './video';
+import { RadioWrapper } from './radio';
+import { NavBar } from './navbar';
+import { lightBlue, yellow } from '@mui/material/colors';
+import { Box, createTheme, PaletteMode, ThemeProvider } from '@mui/material';
+import { createContext, useMemo, useState } from 'react';
+import { AppStateProvider } from './context/AppStateProvider';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
-export const App = () => {
-  const [mode, setMode] = useState<PaletteMode>("light");
+export const App = ({ locale }: { locale: string }) => {
+  const [mode, setMode] = useState<PaletteMode>('light');
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
-    []
+    [],
   );
 
   const theme = useMemo(
@@ -35,20 +35,20 @@ export const App = () => {
           },
         },
       }),
-    [mode]
+    [mode],
   );
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <RecoilRoot>
-          <Box sx={{ height: "100vh", display: "flex" }}>
+    <AppStateProvider>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <Box sx={{ height: '100vh', display: 'flex' }}>
             <YoutubeWrapper />
-            <NavBar />
+            <NavBar locale={locale} />
             <RadioWrapper />
           </Box>
-        </RecoilRoot>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </AppStateProvider>
   );
 };

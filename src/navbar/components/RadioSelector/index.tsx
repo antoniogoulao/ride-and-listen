@@ -1,13 +1,10 @@
-import { FormControl, MenuItem, Select, Typography } from "@mui/material";
-import { useCallback } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { radioSelector, radiosState, selectedRadioState } from "../../../atoms";
-import { RADIOS } from "../../../radios";
+import { FormControl, MenuItem, Select, Typography } from '@mui/material';
+import { useCallback } from 'react';
+import { RADIOS } from '@/radios';
+import { useAppState } from '@/context/AppStateProvider';
 
 export const RadioSelector = () => {
-  const radios = useRecoilValue(radiosState);
-  const selectedRadio = useRecoilValue(selectedRadioState);
-  const setSelectedRadio = useSetRecoilState(radioSelector);
+  const { selectedRadio, setSelectedRadio } = useAppState();
 
   const getRadioChange = useCallback(
     (radioId: number) => {
@@ -16,7 +13,7 @@ export const RadioSelector = () => {
         setSelectedRadio(newRadio);
       }
     },
-    [setSelectedRadio]
+    [setSelectedRadio],
   );
 
   return (
@@ -25,9 +22,8 @@ export const RadioSelector = () => {
         value={selectedRadio?.id}
         onChange={(event) => getRadioChange(event.target.value as number)}
         displayEmpty
-        inputProps={{ "aria-label": "Select radio" }}
-      >
-        {radios.map(({ id, name }) => (
+        inputProps={{ 'aria-label': 'Select radio' }}>
+        {RADIOS.map(({ id, name }) => (
           <MenuItem key={id} value={id}>
             <Typography>{name}</Typography>
           </MenuItem>

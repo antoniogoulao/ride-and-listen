@@ -1,20 +1,22 @@
-import { createRef } from "react";
-import { useEffect } from "react";
-import ReactAudioPlayer from "react-audio-player";
-import { useRecoilValue } from "recoil";
-import { radioPlayState, radioVolumeState, selectedRadioState } from "../atoms";
+'use client';
+
+import { createRef, useEffect } from 'react';
+import ReactAudioPlayer from 'react-audio-player';
+import { useAppState } from '@/context/AppStateProvider';
 
 export const RadioWrapper = () => {
-  const radioVolume = useRecoilValue(radioVolumeState);
-  const isRadioPlay = useRecoilValue(radioPlayState);
-  const selectedRadio = useRecoilValue(selectedRadioState);
+  const { radioVolume, radioPlay, selectedRadio } = useAppState();
   const audioRef = createRef<ReactAudioPlayer>();
 
   useEffect(() => {
-    isRadioPlay
-      ? audioRef.current?.audioEl.current?.play()
-      : audioRef.current?.audioEl.current?.pause();
-  }, [audioRef, isRadioPlay]);
+    if (audioRef.current?.audioEl.current) {
+      if (radioPlay) {
+        audioRef.current.audioEl.current.play();
+      } else {
+        audioRef.current.audioEl.current.pause();
+      }
+    }
+  }, [audioRef, radioPlay]);
 
   return (
     <ReactAudioPlayer
@@ -22,7 +24,7 @@ export const RadioWrapper = () => {
       ref={audioRef}
       id="audio"
       src={selectedRadio?.url}
-      autoPlay={isRadioPlay}
+      autoPlay={radioPlay}
       volume={radioVolume / 100.0}
       controls={false}
     />

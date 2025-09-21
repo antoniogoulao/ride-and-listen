@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "title": "Ride & Listen - Détendez-vous en écoutant des radios portugaises",
+    "description": "Détendez-vous en écoutant des radios locales et regardez-moi rouler à travers le Portugal.",
+    "keywords": "radio, portugal, moto, conduite, musique, streaming"
+  },
+  "navigation": {
+    "hide": "Masquer",
+    "lightMode": "mode clair",
+    "darkMode": "mode sombre",
+    "playPause": "Lecture/Pause",
+    "muteUnmute": "Muet/Son"
+  },
+  "controls": {
+    "videoSound": "Son Vidéo",
+    "radioPlay": "Lecture Radio",
+    "volume": "Volume"
+  },
+  "loading": {
+    "title": "Chargement de Ride & Listen...",
+    "subtitle": "Préparation de votre expérience audio-visuelle"
+  }
+}

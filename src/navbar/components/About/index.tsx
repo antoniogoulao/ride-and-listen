@@ -1,6 +1,6 @@
 import { Box, Link, Typography } from '@mui/material';
-import { GitHub, Language, Mail } from '@mui/icons-material';
-import { Bluesky } from '../../../svg/Bluesky';
+import { GitHub, Home, Mail } from '@mui/icons-material';
+import { Bluesky } from '@/svg/Bluesky';
 
 export const About = () => {
   return (
@@ -40,7 +40,7 @@ export const About = () => {
           aria-label="personal website"
           target="blank"
           href="https://antoniogoulao.dev">
-          <Language color="secondary" />
+          <Home color="secondary" />
         </Link>
       </Box>
     </Box>

@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "title": "Ride & Listen - Relaxa enquanto ouves rádios portuguesas",
+    "description": "Relaxa enquanto ouves rádios locais e vês as minhas viagens de mota por Portugal e Espanha.",
+    "keywords": "rádio, portugal, mota, condução, música, streaming"
+  },
+  "navigation": {
+    "hide": "Ocultar",
+    "lightMode": "modo claro",
+    "darkMode": "modo escuro",
+    "playPause": "Reproduzir/Pausar",
+    "muteUnmute": "Silenciar/Som"
+  },
+  "controls": {
+    "videoSound": "Som do Vídeo",
+    "radioPlay": "Reproduzir Rádio",
+    "volume": "Volume"
+  },
+  "loading": {
+    "title": "A carregar Ride & Listen...",
+    "subtitle": "A preparar a tua experiência áudio-visual"
+  }
+}
