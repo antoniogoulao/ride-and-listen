@@ -29,7 +29,7 @@ Add a landing page that showcases all videos in a browsable, searchable grid. Cl
 | Old (Recoil)             | New (Jotai)                                      | Notes                             |
 |--------------------------|--------------------------------------------------|-----------------------------------|
 | `showBottomBarState`     | `atom(true)`                                     |                                   |
-| `selectedVideoState`     | `atom(random VIDEOS entry)`                      |                                   |
+| `selectedVideoState`     | **removed** — superseded by `currentViewAtom`    | see Section 2                     |
 | `videosState`            | `atom(VIDEOS)`                                   |                                   |
 | `selectedRadioState`     | `atomWithStorage('RECENTLY_PLAYED', RADIOS[0])`  | replaces localStorageEffect       |
 | `radiosState`            | `atom(RADIOS)`                                   |                                   |
@@ -102,7 +102,7 @@ When `currentViewAtom !== 'landing'`, `App.tsx` renders `<YoutubeWrapper />` fil
 Floating MUI `IconButton` with `ArrowBack` icon, positioned `absolute`, top-left corner (16px from each edge), `z-index` above the player. Calls `useNavigate` back to `'landing'`.
 
 ### YouTube player
-`selectedVideoState` is set to `currentViewAtom`'s value when navigating to a video, so the existing `<YoutubeWrapper />` plays the correct video with no changes to its internal logic.
+`<YoutubeWrapper />` reads the video ID directly from `currentViewAtom` (when it is not `'landing'`). `selectedVideoState` is removed — `currentViewAtom` is the single source of truth. The `onEndVideo` handler calls `setCurrentView(nextVideoId)` which updates the atom and the URL in one place, keeping them in sync even on auto-advance.
 
 ---
 

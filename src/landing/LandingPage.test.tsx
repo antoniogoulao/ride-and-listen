@@ -2,8 +2,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { LandingPage } from './index';
 
-jest.mock('../hooks/useNavigate', () => ({
-  useNavigate: () => ({ navigateToVideo: jest.fn() }),
+vi.mock('../hooks/useNavigate', () => ({
+  useNavigate: () => ({ navigateToVideo: vi.fn() }),
 }));
 
 const theme = createTheme();

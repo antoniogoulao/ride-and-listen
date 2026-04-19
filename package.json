@@ -4,12 +4,15 @@
   "private": true,
   "homepage": "https://rideandlisten.antoniogoulao.dev/",
   "devDependencies": {
-    "@types/jest": "^29.5.14",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
     "@types/youtube-player": "^5.5.8",
-    "prettier": "3.5.3"
+    "@vitejs/plugin-react": "6.0.1",
+    "jsdom": "29.0.2",
+    "prettier": "3.5.3",
+    "vite": "8.0.8",
+    "vitest": "4.1.4"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -20,40 +23,19 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.6.1",
     "gh-pages": "^6.3.0",
+    "jotai": "2.19.1",
     "react": "^18.2.0",
     "react-audio-player": "^0.17.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
     "react-youtube": "^10.1.0",
-    "recoil": "^0.7.7",
-    "typescript": "^5.7.3",
-    "web-vitals": "^3.5.0"
+    "typescript": "^5.7.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npx browserslist@latest --update-db && rm -rf build && yarn build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "predeploy": "rm -rf dist && vite build",
+    "deploy": "gh-pages -d dist"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

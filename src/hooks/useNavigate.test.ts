@@ -3,7 +3,7 @@ import { getDefaultStore } from 'jotai';
 import { currentViewAtom } from '../atoms';
 import { useNavigate } from './useNavigate';
 
-const pushStateSpy = jest
+const pushStateSpy = vi
   .spyOn(window.history, 'pushState')
   .mockImplementation(() => {});
 
