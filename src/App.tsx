@@ -1,20 +1,43 @@
-import { RecoilRoot } from "recoil";
-import { YoutubeWrapper } from "./video";
-import { RadioWrapper } from "./radio";
-import { NavBar } from "./navbar";
-import { lightBlue, yellow } from "@mui/material/colors";
-import { Box, createTheme, PaletteMode, ThemeProvider } from "@mui/material";
-import { createContext, useMemo, useState } from "react";
+import { ArrowBack } from '@mui/icons-material';
+import {
+  Box,
+  createTheme,
+  IconButton,
+  PaletteMode,
+  ThemeProvider,
+} from '@mui/material';
+import { lightBlue, yellow } from '@mui/material/colors';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { createContext, useEffect, useMemo, useState } from 'react';
+import { currentViewAtom } from './atoms';
+import { useNavigate } from './hooks/useNavigate';
+import { LandingPage } from './landing';
+import { NavBar } from './navbar';
+import { RadioWrapper } from './radio';
+import { YoutubeWrapper } from './video';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 export const App = () => {
-  const [mode, setMode] = useState<PaletteMode>("light");
+  const [mode, setMode] = useState<PaletteMode>('light');
+  const currentView = useAtomValue(currentViewAtom);
+  const setCurrentView = useSetAtom(currentViewAtom);
+  const { navigateToLanding } = useNavigate();
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const videoId = new URLSearchParams(window.location.search).get('v');
+      setCurrentView(videoId ?? 'landing');
+    };
+    syncFromUrl();
+    window.addEventListener('popstate', syncFromUrl);
+    return () => window.removeEventListener('popstate', syncFromUrl);
+  }, [setCurrentView]);
+
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-      },
+      toggleColorMode: () =>
+        setMode((prev) => (prev === 'light' ? 'dark' : 'light')),
     }),
     []
   );
@@ -24,15 +47,9 @@ export const App = () => {
       createTheme({
         palette: {
           mode,
-          primary: {
-            main: yellow[700],
-          },
-          secondary: {
-            main: lightBlue[900],
-          },
-          text: {
-            primary: lightBlue[900],
-          },
+          primary: { main: yellow[700] },
+          secondary: { main: lightBlue[900] },
+          text: { primary: lightBlue[900] },
         },
       }),
     [mode]
@@ -41,14 +58,25 @@ export const App = () => {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <RecoilRoot>
-          <Box sx={{ height: "100vh", display: "flex" }}>
-            <YoutubeWrapper />
-            <NavBar />
-            <RadioWrapper />
-          </Box>
-        </RecoilRoot>
+        <Box sx={{ height: '100vh', display: 'flex', position: 'relative' }}>
+          {currentView === 'landing' ? <LandingPage /> : <YoutubeWrapper />}
+          {currentView !== 'landing' && (
+            <Box sx={{ position: 'absolute', top: 16, left: 16, zIndex: 10 }}>
+              <IconButton
+                onClick={navigateToLanding}
+                aria-label="back to landing page"
+                sx={{ backgroundColor: '#ffffff40' }}
+              >
+                <ArrowBack />
+              </IconButton>
+            </Box>
+          )}
+          <NavBar />
+          <RadioWrapper />
+        </Box>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
 };
+
+export default App;

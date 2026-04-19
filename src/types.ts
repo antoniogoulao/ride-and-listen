@@ -1,12 +1,13 @@
 export type Video = {
-    videoId: string;
-    name: string;
-}
+  videoId: string;
+  name: string;
+  keywords?: string[];
+};
 
 export type Radio = {
-    id: number;
-    url: string;
-    name: string;
-}
+  id: number;
+  url: string;
+  name: string;
+};
 
-export type Speed = 1 | 1.5 | 2
+export type Speed = 1 | 1.5 | 2;

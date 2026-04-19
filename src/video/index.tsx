@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
-import YouTube from "react-youtube";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { YouTubePlayer } from "youtube-player/dist/types";
-import { selectedVideoState, videoMuteState, videoSpeedState } from "../atoms";
-import { VIDEOS } from "../videos";
+import { useEffect, useState } from 'react';
+import YouTube from 'react-youtube';
+import { useAtomValue } from 'jotai';
+import { YouTubePlayer } from 'youtube-player/dist/types';
+import { currentViewAtom, videoMuteAtom, videoSpeedAtom } from '../atoms';
+import { VIDEOS } from '../videos';
+import { useNavigate } from '../hooks/useNavigate';
 
 export const YoutubeWrapper = () => {
-  const id = useRecoilValue(selectedVideoState);
-  const setSelectedVideo = useSetRecoilState(selectedVideoState);
-  const isVideoMute = useRecoilValue(videoMuteState);
-  const speed = useRecoilValue(videoSpeedState);
+  const currentView = useAtomValue(currentViewAtom);
+  const isVideoMute = useAtomValue(videoMuteAtom);
+  const speed = useAtomValue(videoSpeedAtom);
   const [player, setPlayer] = useState<YouTubePlayer>();
+  const { navigateToVideo } = useNavigate();
 
   useEffect(() => {
     isVideoMute ? player?.mute() : player?.unMute();
@@ -26,21 +27,20 @@ export const YoutubeWrapper = () => {
   };
 
   const onEndVideo = () => {
-    const index = VIDEOS.findIndex((elem) => elem.videoId === id);
-    setSelectedVideo(VIDEOS[(index + 1) % VIDEOS.length].videoId);
+    const index = VIDEOS.findIndex((elem) => elem.videoId === currentView);
+    navigateToVideo(VIDEOS[(index + 1) % VIDEOS.length].videoId);
   };
 
   return (
     <YouTube
-      videoId={id}
+      videoId={currentView as string}
       className="youtube-player"
       onReady={onReady}
       onEnd={onEndVideo}
       opts={{
-        height: "100%",
-        width: "100%",
+        height: '100%',
+        width: '100%',
         playerVars: {
-          // https://developers.google.com/youtube/player_parameters
           autoplay: 1,
           controls: 0,
           loop: 1,

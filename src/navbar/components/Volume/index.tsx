@@ -1,28 +1,23 @@
-import { VolumeDown, VolumeUp } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import Slider from "@mui/material/Slider";
-import { Box } from "@mui/system";
-import { SetterOrUpdater, useRecoilValue, useSetRecoilState } from "recoil";
-import { radioVolumeState } from "../../../atoms";
+import { VolumeDown, VolumeUp } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import Slider from '@mui/material/Slider';
+import { Box } from '@mui/system';
+import { useAtom } from 'jotai';
+import { radioVolumeAtom } from '../../../atoms';
 
-const handleVolumeChange =
-  (setVolume: SetterOrUpdater<number>) =>
-  (_: any, value: number | number[]) => {
-    if (typeof value === "number") {
-      if (value > 100) value = 100;
-      if (value < 0) value = 0;
-      setVolume(value as number);
-    }
-  };
+const clamp = (value: number) => Math.min(100, Math.max(0, value));
 
 export const Volume = () => {
-  const volume = useRecoilValue(radioVolumeState);
-  const setVolume = useSetRecoilState(radioVolumeState);
+  const [volume, setVolume] = useAtom(radioVolumeAtom);
+
+  const handleSliderChange = (_: unknown, value: number | number[]) => {
+    if (typeof value === 'number') setVolume(clamp(value));
+  };
 
   return (
     <Box sx={{ width: 200 }} display="flex" alignItems="center">
       <IconButton
-        onClick={() => handleVolumeChange(setVolume)(null, volume - 10)}
+        onClick={() => setVolume(clamp(volume - 10))}
         aria-label="volume down"
       >
         <VolumeDown color="secondary" />
@@ -32,13 +27,13 @@ export const Volume = () => {
         min={0}
         max={100}
         value={volume}
-        onChange={handleVolumeChange(setVolume)}
+        onChange={handleSliderChange}
         aria-labelledby="Volume"
         color="secondary"
       />
 
       <IconButton
-        onClick={() => handleVolumeChange(setVolume)(null, volume + 10)}
+        onClick={() => setVolume(clamp(volume + 10))}
         aria-label="volume up"
       >
         <VolumeUp color="secondary" />

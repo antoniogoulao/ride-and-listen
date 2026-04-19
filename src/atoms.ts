@@ -1,58 +1,27 @@
-import { atom, selector } from "recoil";
-import { localStorageEffect } from "./localStorage";
-import { RADIOS } from "./radios";
-import { Radio, Speed, Video } from "./types";
-import { VIDEOS } from "./videos";
+import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
+import { RADIOS } from './radios';
+import { Radio, Speed, Video } from './types';
+import { VIDEOS } from './videos';
 
-export const showBottomBarState = atom<boolean>({
-  key: "showBottomBarState",
-  default: true,
-});
+export const showBottomBarAtom = atom<boolean>(true);
 
-export const selectedVideoState = atom<string>({
-  key: "selectedVideoState",
-  default: VIDEOS[Math.floor(Math.random() * VIDEOS.length)].videoId,
-});
+// 'landing' = show landing page; any other string = videoId to play
+export const currentViewAtom = atom<'landing' | string>('landing');
 
-export const videosState = atom<Video[]>({
-  key: "videosState",
-  default: VIDEOS,
-});
+export const videosAtom = atom<Video[]>(VIDEOS);
 
-export const selectedRadioState = atom<Radio>({
-  key: "selectedRadioState",
-  default: RADIOS[0],
-  effects: [localStorageEffect("RECENTLY_PLAYED")],
-});
+export const selectedRadioAtom = atomWithStorage<Radio>(
+  'RECENTLY_PLAYED',
+  RADIOS[0]
+);
 
-export const radiosState = atom<Radio[]>({
-  key: "radiosState",
-  default: RADIOS,
-});
+export const radiosAtom = atom<Radio[]>(RADIOS);
 
-export const radioVolumeState = atom<number>({
-  key: "radioVolumeState",
-  default: 50,
-  effects: [localStorageEffect("VOLUME")],
-});
+export const radioVolumeAtom = atomWithStorage<number>('VOLUME', 50);
 
-export const radioPlayState = atom<boolean>({
-  key: "radioPlayState",
-  default: false,
-});
+export const radioPlayAtom = atom<boolean>(false);
 
-export const videoMuteState = atom<boolean>({
-  key: "videoMuteState",
-  default: true,
-});
+export const videoMuteAtom = atom<boolean>(true);
 
-export const videoSpeedState = atom<Speed>({
-  key: "videoSpeedState",
-  default: 1,
-});
-
-export const radioSelector = selector({
-  key: "radioSelector",
-  get: ({ get }) => get(selectedRadioState),
-  set: ({ set }, newRadioValue) => set(selectedRadioState, newRadioValue),
-});
+export const videoSpeedAtom = atom<Speed>(1);

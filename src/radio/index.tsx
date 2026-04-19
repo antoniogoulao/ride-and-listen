@@ -1,20 +1,19 @@
-import { createRef } from "react";
-import { useEffect } from "react";
-import ReactAudioPlayer from "react-audio-player";
-import { useRecoilValue } from "recoil";
-import { radioPlayState, radioVolumeState, selectedRadioState } from "../atoms";
+import { useEffect, useRef } from 'react';
+import ReactAudioPlayer from 'react-audio-player';
+import { useAtomValue } from 'jotai';
+import { radioPlayAtom, radioVolumeAtom, selectedRadioAtom } from '../atoms';
 
 export const RadioWrapper = () => {
-  const radioVolume = useRecoilValue(radioVolumeState);
-  const isRadioPlay = useRecoilValue(radioPlayState);
-  const selectedRadio = useRecoilValue(selectedRadioState);
-  const audioRef = createRef<ReactAudioPlayer>();
+  const radioVolume = useAtomValue(radioVolumeAtom);
+  const isRadioPlay = useAtomValue(radioPlayAtom);
+  const selectedRadio = useAtomValue(selectedRadioAtom);
+  const audioRef = useRef<ReactAudioPlayer>(null);
 
   useEffect(() => {
     isRadioPlay
       ? audioRef.current?.audioEl.current?.play()
       : audioRef.current?.audioEl.current?.pause();
-  }, [audioRef, isRadioPlay]);
+  }, [isRadioPlay]);
 
   return (
     <ReactAudioPlayer

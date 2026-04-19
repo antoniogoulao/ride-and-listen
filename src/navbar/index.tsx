@@ -7,41 +7,45 @@ import {
   VisibilityOutlined,
   Brightness7,
   Brightness4,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 import {
   AppBar,
   IconButton,
   Toolbar,
   Typography,
   useTheme,
-} from "@mui/material";
-import { Box } from "@mui/system";
-import { useContext } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { ColorModeContext } from "../App";
-import { radioPlayState, showBottomBarState, videoMuteState } from "../atoms";
-import { About } from "./components/About";
-import { RadioSelector } from "./components/RadioSelector";
-import { VideoSelector } from "./components/VideoSelector";
-import { Volume } from "./components/Volume";
+} from '@mui/material';
+import { Box } from '@mui/system';
+import { useContext } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+import { ColorModeContext } from '../App';
+import {
+  currentViewAtom,
+  radioPlayAtom,
+  showBottomBarAtom,
+  videoMuteAtom,
+} from '../atoms';
+import { About } from './components/About';
+import { RadioSelector } from './components/RadioSelector';
+import { VideoSelector } from './components/VideoSelector';
+import { Volume } from './components/Volume';
 
 export const NavBar = () => {
-  const showBottomBar = useRecoilValue(showBottomBarState);
-  const isRadioPlay = useRecoilValue(radioPlayState);
-  const setShowBottomBar = useSetRecoilState(showBottomBarState);
-  const setRadioPlay = useSetRecoilState(radioPlayState);
-  const isVideoMute = useRecoilValue(videoMuteState);
-  const setVideoMute = useSetRecoilState(videoMuteState);
+  const [showBottomBar, setShowBottomBar] = useAtom(showBottomBarAtom);
+  const [isRadioPlay, setRadioPlay] = useAtom(radioPlayAtom);
+  const [isVideoMute, setVideoMute] = useAtom(videoMuteAtom);
+  const currentView = useAtomValue(currentViewAtom);
+  const isOnLanding = currentView === 'landing';
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
   const handleVideoSoundToggle = () => {
-    isVideoMute && setRadioPlay(false);
+    if (isVideoMute) setRadioPlay(false);
     setVideoMute(!isVideoMute);
   };
 
   const handleRadioActionToggle = () => {
-    !isRadioPlay && setVideoMute(true);
+    if (!isRadioPlay) setVideoMute(true);
     setRadioPlay(!isRadioPlay);
   };
 
@@ -49,7 +53,7 @@ export const NavBar = () => {
     return (
       <Box
         sx={{
-          position: "absolute",
+          position: 'absolute',
           bottom: 0,
           left: 0,
           marginLeft: 6,
@@ -59,7 +63,7 @@ export const NavBar = () => {
         <IconButton
           aria-label="open controls bar"
           onClick={() => setShowBottomBar(true)}
-          sx={{ backgroundColor: "#ffffff40" }}
+          sx={{ backgroundColor: '#ffffff40' }}
         >
           <VisibilityOutlined />
         </IconButton>
@@ -71,12 +75,12 @@ export const NavBar = () => {
     <AppBar
       position="fixed"
       color="primary"
-      sx={{ top: "auto", bottom: 0, overflowX: "scroll" }}
+      sx={{ top: 'auto', bottom: 0, overflowX: 'scroll' }}
     >
       <Toolbar
-        sx={{ flex: 1, justifyContent: "space-between", paddingBottom: 1 }}
+        sx={{ flex: 1, justifyContent: 'space-between', paddingBottom: 1 }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box display="flex" flexDirection="column" alignItems="center">
             <IconButton
               aria-label="hide controls bar"
@@ -98,7 +102,7 @@ export const NavBar = () => {
               onClick={colorMode.toggleColorMode}
               aria-label="enable/disable dark mode"
             >
-              {theme.palette.mode === "dark" ? (
+              {theme.palette.mode === 'dark' ? (
                 <Brightness7 color="secondary" />
               ) : (
                 <Brightness4 color="secondary" />
@@ -108,20 +112,22 @@ export const NavBar = () => {
               {theme.palette.mode} mode
             </Typography>
           </Box>
-          <VideoSelector />
-          <IconButton
-            aria-label="mute video sound"
-            onClick={handleVideoSoundToggle}
-          >
-            {isVideoMute ? (
-              <VolumeOff color="secondary" />
-            ) : (
-              <VolumeUp color="secondary" />
-            )}
-          </IconButton>
+          {!isOnLanding && <VideoSelector />}
+          {!isOnLanding && (
+            <IconButton
+              aria-label="mute video sound"
+              onClick={handleVideoSoundToggle}
+            >
+              {isVideoMute ? (
+                <VolumeOff color="secondary" />
+              ) : (
+                <VolumeUp color="secondary" />
+              )}
+            </IconButton>
+          )}
         </Box>
         <About />
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <IconButton
             aria-label="play/pause radio"
             onClick={handleRadioActionToggle}
