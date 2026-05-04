@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { LandingPage } from './index';
+import { VIDEOS } from '../videos';
 
 vi.mock('../hooks/useNavigate', () => ({
   useNavigate: () => ({ navigateToVideo: vi.fn() }),
@@ -58,6 +59,6 @@ describe('LandingPage', () => {
   test('renders a play overlay element for every video card', () => {
     const { container } = renderWithTheme(<LandingPage />);
     const overlays = container.querySelectorAll('.play-overlay');
-    expect(overlays.length).toBe(15);
+    expect(overlays.length).toBe(VIDEOS.length);
   });
 });
