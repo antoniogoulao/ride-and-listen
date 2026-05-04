@@ -1,6 +1,7 @@
 export type Video = {
   videoId: string;
   name: string;
+  region: string;
   keywords?: string[];
 };
 
