@@ -42,4 +42,22 @@ describe('LandingPage', () => {
       screen.getByAltText('Portagem (Marvão) -> Castelo de Vide, Alentejo')
     ).toBeInTheDocument();
   });
+
+  test('renders a region badge for each distinct region', () => {
+    renderWithTheme(<LandingPage />);
+    expect(screen.getByText('Alentejo')).toBeInTheDocument();
+    expect(screen.getAllByText('Ribatejo').length).toBeGreaterThan(0);
+    expect(screen.getByText('Centro')).toBeInTheDocument();
+    expect(screen.getByText('AML')).toBeInTheDocument();
+    expect(screen.getByText('Minho')).toBeInTheDocument();
+    expect(screen.getAllByText('Espanha').length).toBeGreaterThan(0);
+    expect(screen.getByText('Estremadura')).toBeInTheDocument();
+    expect(screen.getAllByText('Norte').length).toBeGreaterThan(0);
+  });
+
+  test('renders a play overlay element for every video card', () => {
+    const { container } = renderWithTheme(<LandingPage />);
+    const overlays = container.querySelectorAll('.play-overlay');
+    expect(overlays.length).toBe(15);
+  });
 });
