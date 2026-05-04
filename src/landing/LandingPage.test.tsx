@@ -19,18 +19,18 @@ describe('LandingPage', () => {
 
   test('renders a thumbnail image for each video', () => {
     renderWithTheme(<LandingPage />);
-    expect(screen.getByAltText('Portagem (Marvão) -> Castelo de Vide, Alentejo')).toBeInTheDocument();
-    expect(screen.getByAltText('N222 - Parte 1, Norte')).toBeInTheDocument();
+    expect(screen.getByAltText('Portagem (Marvão) -> Castelo de Vide')).toBeInTheDocument();
+    expect(screen.getByAltText('N222 - Parte 1')).toBeInTheDocument();
   });
 
   test('search bar filters videos by title', () => {
     renderWithTheme(<LandingPage />);
     const searchInput = screen.getByPlaceholderText('Search videos...');
     fireEvent.change(searchInput, { target: { value: 'N222' } });
-    expect(screen.getByAltText('N222 - Parte 1, Norte')).toBeInTheDocument();
-    expect(screen.getByAltText('N222 - Parte 2, Norte')).toBeInTheDocument();
+    expect(screen.getByAltText('N222 - Parte 1')).toBeInTheDocument();
+    expect(screen.getByAltText('N222 - Parte 2')).toBeInTheDocument();
     expect(
-      screen.queryByAltText('Portagem (Marvão) -> Castelo de Vide, Alentejo')
+      screen.queryByAltText('Portagem (Marvão) -> Castelo de Vide')
     ).not.toBeInTheDocument();
   });
 
@@ -40,7 +40,7 @@ describe('LandingPage', () => {
     fireEvent.change(searchInput, { target: { value: 'N222' } });
     fireEvent.change(searchInput, { target: { value: '' } });
     expect(
-      screen.getByAltText('Portagem (Marvão) -> Castelo de Vide, Alentejo')
+      screen.getByAltText('Portagem (Marvão) -> Castelo de Vide')
     ).toBeInTheDocument();
   });
 

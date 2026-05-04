@@ -8,6 +8,7 @@ import {
   InputAdornment,
   TextField,
   Typography,
+  useTheme,
 } from '@mui/material';
 import {
   amber,
@@ -18,10 +19,10 @@ import {
   purple,
   red,
   teal,
+  yellow,
 } from '@mui/material/colors';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
-import logo from '../logo.svg';
 import { videosAtom } from '../atoms';
 import { useNavigate } from '../hooks/useNavigate';
 
@@ -40,13 +41,13 @@ export const LandingPage = () => {
   const videos = useAtomValue(videosAtom);
   const { navigateToVideo } = useNavigate();
   const [query, setQuery] = useState('');
+  const theme = useTheme();
 
   const filtered = videos.filter(({ name, keywords }) => {
     if (!query) return true;
     const q = query.toLowerCase();
     return (
-      name.toLowerCase().includes(q) ||
-      (keywords ?? []).some((k) => k.toLowerCase().includes(q))
+      name.toLowerCase().includes(q) || (keywords ?? []).some((k) => k.toLowerCase().includes(q))
     );
   });
 
@@ -58,22 +59,19 @@ export const LandingPage = () => {
         overflowY: 'auto',
         pb: '80px',
         bgcolor: 'background.default',
-      }}
-    >
+      }}>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           py: 4,
-        }}
-      >
-        <img
-          src={logo}
-          alt="Ride & Listen logo"
-          style={{ height: 80, marginBottom: 16 }}
-        />
-        <Typography variant="h3" fontWeight="bold">
+        }}>
+        <img src="/logo192.png" alt="Ride & Listen logo" style={{ height: 80, marginBottom: 16 }} />
+        <Typography
+          variant="h3"
+          fontWeight="bold"
+          sx={{ color: theme.palette.mode === 'light' ? lightBlue[900] : yellow[700] }}>
           Ride & Listen
         </Typography>
       </Box>
@@ -103,17 +101,20 @@ export const LandingPage = () => {
               onClick={() => navigateToVideo(videoId)}
               sx={{
                 m: 1.5,
+                p: '5px',
                 cursor: 'pointer',
                 width: { xs: 'calc(100vw - 24px)', sm: 400 },
+                border: '2px solid',
+                borderColor: 'grey.400',
+                borderRadius: '10px',
                 '&:hover .play-overlay': { opacity: 1 },
-              }}
-            >
-              <Box sx={{ position: 'relative' }}>
+              }}>
+              <Box sx={{ position: 'relative', m: '5px' }}>
                 <CardMedia
                   component="img"
                   image={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
                   alt={name}
-                  sx={{ aspectRatio: '4/3', objectFit: 'cover' }}
+                  sx={{ aspectRatio: '4/3', objectFit: 'cover', borderRadius: '5px' }}
                 />
                 <Box
                   className="play-overlay"
@@ -126,27 +127,26 @@ export const LandingPage = () => {
                     bgcolor: 'rgba(0,0,0,0.4)',
                     opacity: 0,
                     transition: 'opacity 0.2s',
-                  }}
-                >
+                  }}>
                   <PlayArrow sx={{ fontSize: 64, color: '#fff' }} />
                 </Box>
               </Box>
-              <CardContent
-                sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}
-              >
-                <Chip
-                  label={region}
-                  size="small"
-                  sx={{
-                    alignSelf: 'flex-start',
-                    bgcolor: colors.bg,
-                    color: colors.text,
-                    fontWeight: 600,
-                  }}
-                />
+              <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                 <Typography variant="body1" noWrap>
                   {name}
                 </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Chip
+                    label={region}
+                    size="small"
+                    sx={{
+                      bgcolor: colors.bg,
+                      color: colors.text,
+                      fontWeight: 600,
+                      fontSize: '0.7rem',
+                    }}
+                  />
+                </Box>
               </CardContent>
             </Card>
           );
