@@ -105,7 +105,6 @@ export const LandingPage = () => {
                 m: 1.5,
                 cursor: 'pointer',
                 width: { xs: 'calc(100vw - 24px)', sm: 400 },
-                position: 'relative',
                 '&:hover .play-overlay': { opacity: 1 },
               }}
             >
