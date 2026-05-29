@@ -1,6 +1,7 @@
 import { PlayArrow, Search } from '@mui/icons-material';
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardMedia,
@@ -39,7 +40,7 @@ const REGION_COLORS: Record<string, { bg: string; text: string }> = {
 
 export const LandingPage = () => {
   const videos = useAtomValue(videosAtom);
-  const { navigateToVideo } = useNavigate();
+  const { navigateToVideo, navigateToPrivacy } = useNavigate();
   const [query, setQuery] = useState('');
   const theme = useTheme();
 
@@ -151,6 +152,11 @@ export const LandingPage = () => {
             </Card>
           );
         })}
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}>
+        <Button variant="text" onClick={navigateToPrivacy}>
+          Privacy Policy
+        </Button>
       </Box>
     </Box>
   );

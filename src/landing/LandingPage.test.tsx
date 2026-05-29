@@ -4,7 +4,7 @@ import { LandingPage } from './index';
 import { VIDEOS } from '../videos';
 
 vi.mock('../hooks/useNavigate', () => ({
-  useNavigate: () => ({ navigateToVideo: vi.fn() }),
+  useNavigate: () => ({ navigateToVideo: vi.fn(), navigateToPrivacy: vi.fn() }),
 }));
 
 const theme = createTheme();
@@ -60,5 +60,12 @@ describe('LandingPage', () => {
     const { container } = renderWithTheme(<LandingPage />);
     const overlays = container.querySelectorAll('.play-overlay');
     expect(overlays.length).toBe(VIDEOS.length);
+  });
+
+  test('renders a Privacy Policy button in the footer', () => {
+    renderWithTheme(<LandingPage />);
+    expect(
+      screen.getByRole('button', { name: /privacy policy/i })
+    ).toBeInTheDocument();
   });
 });
