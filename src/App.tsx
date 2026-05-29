@@ -13,6 +13,7 @@ import { currentViewAtom } from './atoms';
 import { useNavigate } from './hooks/useNavigate';
 import { LandingPage } from './landing';
 import { NavBar } from './navbar';
+import { PrivacyPolicy } from './privacy';
 import { RadioWrapper } from './radio';
 import { YoutubeWrapper } from './video';
 
@@ -26,8 +27,12 @@ export const App = () => {
 
   useEffect(() => {
     const syncFromUrl = () => {
-      const videoId = new URLSearchParams(window.location.search).get('v');
-      setCurrentView(videoId ?? 'landing');
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('page') === 'privacy') {
+        setCurrentView('privacy');
+      } else {
+        setCurrentView(params.get('v') ?? 'landing');
+      }
     };
     syncFromUrl();
     window.addEventListener('popstate', syncFromUrl);
@@ -59,8 +64,14 @@ export const App = () => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <Box sx={{ height: '100vh', display: 'flex', position: 'relative' }}>
-          {currentView === 'landing' ? <LandingPage /> : <YoutubeWrapper />}
-          {currentView !== 'landing' && (
+          {currentView === 'landing' ? (
+            <LandingPage />
+          ) : currentView === 'privacy' ? (
+            <PrivacyPolicy />
+          ) : (
+            <YoutubeWrapper />
+          )}
+          {currentView !== 'landing' && currentView !== 'privacy' && (
             <Box sx={{ position: 'absolute', top: 16, left: 16, zIndex: 10 }}>
               <IconButton
                 onClick={navigateToLanding}
