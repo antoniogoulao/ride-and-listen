@@ -35,7 +35,7 @@ export const NavBar = () => {
   const [isRadioPlay, setRadioPlay] = useAtom(radioPlayAtom);
   const [isVideoMute, setVideoMute] = useAtom(videoMuteAtom);
   const currentView = useAtomValue(currentViewAtom);
-  const isOnLanding = currentView === 'landing';
+  const isOnLanding = currentView === 'landing' || currentView === 'privacy';
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
