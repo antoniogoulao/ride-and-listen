@@ -15,14 +15,18 @@ export const Volume = () => {
   };
 
   return (
-    <Box sx={{ width: { xs: 130, sm: 200 } }} display="flex" alignItems="center">
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        width: { xs: 130, sm: 200 }
+      }}>
       <IconButton
         onClick={() => setVolume(clamp(volume - 10))}
         aria-label="volume down"
       >
         <VolumeDown color="secondary" />
       </IconButton>
-
       <Slider
         min={0}
         max={100}
@@ -31,7 +35,6 @@ export const Volume = () => {
         aria-labelledby="Volume"
         color="secondary"
       />
-
       <IconButton
         onClick={() => setVolume(clamp(volume + 10))}
         aria-label="volume up"

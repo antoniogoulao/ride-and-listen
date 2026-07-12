@@ -45,12 +45,21 @@ export const PrivacyPolicy = () => {
         <Box sx={{ bgcolor: 'grey.200', borderRadius: '50%', p: 2, mb: 2 }}>
           <VerifiedUser sx={{ fontSize: 40 }} />
         </Box>
-        <Typography variant="h4" fontWeight="bold" mb={3}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            mb: 3
+          }}>
           {t('privacyPolicy')}
         </Typography>
         <Card variant="outlined" sx={{ maxWidth: 600, width: '100%', p: 3, mb: 3 }}>
-          <Typography paragraph>{t('privacyNoData')}</Typography>
-          <Typography paragraph>{t('privacyLocalStorage')}</Typography>
+          <Typography sx={{
+            marginBottom: "16px"
+          }}>{t('privacyNoData')}</Typography>
+          <Typography sx={{
+            marginBottom: "16px"
+          }}>{t('privacyLocalStorage')}</Typography>
           <Typography>
             {t('privacyYoutubePre')}{' '}
             <Link
