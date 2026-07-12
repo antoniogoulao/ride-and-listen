@@ -30,7 +30,7 @@ describe('LandingPage', () => {
 
   test('search bar filters videos by title', () => {
     renderWithTheme(<LandingPage />);
-    const searchInput = screen.getByPlaceholderText('Search videos...');
+    const searchInput = screen.getByPlaceholderText('Search rides…');
     fireEvent.change(searchInput, { target: { value: 'N222' } });
     expect(screen.getByAltText('N222 - Parte 1')).toBeInTheDocument();
     expect(screen.getByAltText('N222 - Parte 2')).toBeInTheDocument();
@@ -41,7 +41,7 @@ describe('LandingPage', () => {
 
   test('search bar shows all videos when query is cleared', () => {
     renderWithTheme(<LandingPage />);
-    const searchInput = screen.getByPlaceholderText('Search videos...');
+    const searchInput = screen.getByPlaceholderText('Search rides…');
     fireEvent.change(searchInput, { target: { value: 'N222' } });
     fireEvent.change(searchInput, { target: { value: '' } });
     expect(
@@ -51,14 +51,9 @@ describe('LandingPage', () => {
 
   test('renders a region badge for each distinct region', () => {
     renderWithTheme(<LandingPage />);
-    expect(screen.getByText('Alentejo')).toBeInTheDocument();
-    expect(screen.getAllByText('Ribatejo').length).toBeGreaterThan(0);
-    expect(screen.getByText('Centro')).toBeInTheDocument();
-    expect(screen.getByText('AML')).toBeInTheDocument();
-    expect(screen.getByText('Minho')).toBeInTheDocument();
-    expect(screen.getAllByText('Espanha').length).toBeGreaterThan(0);
-    expect(screen.getByText('Estremadura')).toBeInTheDocument();
-    expect(screen.getAllByText('Norte').length).toBeGreaterThan(0);
+    for (const region of ['Alentejo', 'Ribatejo', 'Centro', 'AML', 'Minho', 'Espanha', 'Estremadura', 'Norte']) {
+      expect(screen.getAllByText(region).length).toBeGreaterThan(1);
+    }
   });
 
   test('renders a play overlay element for every video card', () => {
@@ -85,5 +80,24 @@ describe('LandingPage', () => {
     renderWithTheme(<LandingPage />);
     fireEvent.click(screen.getByRole('button', { name: /start riding/i }));
     expect(navigateToVideo).toHaveBeenCalledWith(VIDEOS[0].videoId);
+  });
+
+  test('region plate narrows the grid and search filters within it', () => {
+    renderWithTheme(<LandingPage />);
+    fireEvent.click(screen.getByRole('button', { name: 'Norte' }));
+    expect(screen.getByAltText('N222 - Parte 1')).toBeInTheDocument();
+    expect(screen.queryByAltText("Serra D'Arga")).not.toBeInTheDocument();
+    fireEvent.change(screen.getByPlaceholderText('Search rides…'), {
+      target: { value: 'Parte 2' },
+    });
+    expect(screen.getByAltText('N222 - Parte 2')).toBeInTheDocument();
+    expect(screen.queryByAltText('N222 - Parte 1')).not.toBeInTheDocument();
+  });
+
+  test('All roads plate resets the region filter', () => {
+    renderWithTheme(<LandingPage />);
+    fireEvent.click(screen.getByRole('button', { name: 'Norte' }));
+    fireEvent.click(screen.getByRole('button', { name: /all roads/i }));
+    expect(screen.getByAltText("Serra D'Arga")).toBeInTheDocument();
   });
 });
