@@ -5,20 +5,10 @@ import {
   VolumeOff,
   VisibilityOffOutlined,
   VisibilityOutlined,
-  Brightness7,
-  Brightness4,
 } from '@mui/icons-material';
-import {
-  AppBar,
-  IconButton,
-  Toolbar,
-  Typography,
-  useTheme,
-} from '@mui/material';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useContext } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
-import { ColorModeContext } from '../App';
 import {
   currentViewAtom,
   radioPlayAtom,
@@ -36,8 +26,6 @@ export const NavBar = () => {
   const [isVideoMute, setVideoMute] = useAtom(videoMuteAtom);
   const currentView = useAtomValue(currentViewAtom);
   const isOnLanding = currentView === 'landing' || currentView === 'privacy';
-  const theme = useTheme();
-  const colorMode = useContext(ColorModeContext);
 
   const handleVideoSoundToggle = () => {
     if (isVideoMute) setRadioPlay(false);
@@ -89,28 +77,6 @@ export const NavBar = () => {
               <VisibilityOffOutlined color="secondary" />
             </IconButton>
             <Typography color="secondary">Hide</Typography>
-          </Box>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            marginX={2}
-            minWidth="max-content"
-          >
-            <IconButton
-              sx={{ ml: 1 }}
-              onClick={colorMode.toggleColorMode}
-              aria-label="enable/disable dark mode"
-            >
-              {theme.palette.mode === 'dark' ? (
-                <Brightness7 color="secondary" />
-              ) : (
-                <Brightness4 color="secondary" />
-              )}
-            </IconButton>
-            <Typography color="secondary" textTransform="capitalize">
-              {theme.palette.mode} mode
-            </Typography>
           </Box>
           {!isOnLanding && <VideoSelector />}
           {!isOnLanding && (
