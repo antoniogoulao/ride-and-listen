@@ -35,4 +35,15 @@ describe('useNavigate', () => {
     expect(getDefaultStore().get(currentViewAtom)).toBe('landing');
     expect(pushStateSpy).toHaveBeenCalledWith(null, '', '/');
   });
+
+  test('navigateToPrivacy sets currentViewAtom to privacy and pushes URL', () => {
+    const { result } = renderHook(() => useNavigate());
+
+    act(() => {
+      result.current.navigateToPrivacy();
+    });
+
+    expect(getDefaultStore().get(currentViewAtom)).toBe('privacy');
+    expect(pushStateSpy).toHaveBeenCalledWith(null, '', '?page=privacy');
+  });
 });

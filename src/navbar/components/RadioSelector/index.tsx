@@ -1,20 +1,15 @@
 import { FormControl, MenuItem, Select, Typography } from '@mui/material';
-import { useCallback } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
 import { radiosAtom, selectedRadioAtom } from '../../../atoms';
-import { RADIOS } from '../../../radios';
 
 export const RadioSelector = () => {
   const radios = useAtomValue(radiosAtom);
   const [selectedRadio, setSelectedRadio] = useAtom(selectedRadioAtom);
 
-  const handleRadioChange = useCallback(
-    (radioId: number) => {
-      const newRadio = RADIOS.find((elem) => elem.id === radioId);
-      if (newRadio) setSelectedRadio(newRadio);
-    },
-    [setSelectedRadio]
-  );
+  const handleRadioChange = (radioId: number) => {
+    const newRadio = radios.find((elem) => elem.id === radioId);
+    if (newRadio) setSelectedRadio(newRadio);
+  };
 
   return (
     <FormControl sx={{ margin: 1, minWidth: 120 }}>

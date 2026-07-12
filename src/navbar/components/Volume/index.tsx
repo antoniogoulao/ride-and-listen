@@ -15,7 +15,7 @@ export const Volume = () => {
   };
 
   return (
-    <Box sx={{ width: 200 }} display="flex" alignItems="center">
+    <Box sx={{ width: { xs: 130, sm: 200 } }} display="flex" alignItems="center">
       <IconButton
         onClick={() => setVolume(clamp(volume - 10))}
         aria-label="volume down"

@@ -18,5 +18,10 @@ export const useNavigate = () => {
     window.history.pushState(null, '', '/');
   }, [setCurrentView]);
 
-  return { navigateToVideo, navigateToLanding };
+  const navigateToPrivacy = useCallback(() => {
+    setCurrentView('privacy');
+    window.history.pushState(null, '', '?page=privacy');
+  }, [setCurrentView]);
+
+  return { navigateToVideo, navigateToLanding, navigateToPrivacy };
 };
