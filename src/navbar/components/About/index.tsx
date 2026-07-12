@@ -15,31 +15,39 @@ export const About = () => {
       <Typography>António Goulão</Typography>
       <Box>
         <Link
-          marginX={0.25}
           aria-label="project github repo"
           target="blank"
-          href="https://github.com/antoniogoulao/ride-and-listen">
+          href="https://github.com/antoniogoulao/ride-and-listen"
+          sx={{
+            marginX: 0.25
+          }}>
           <GitHub color="secondary" />
         </Link>
         <Link
-          marginX={0.25}
           aria-label="bluesky account"
           target="blank"
-          href="https://bsky.app/profile/antoniogoulao.dev">
+          href="https://bsky.app/profile/antoniogoulao.dev"
+          sx={{
+            marginX: 0.25
+          }}>
           <Bluesky color="secondary" />
         </Link>
         <Link
-          marginX={0.25}
           aria-label="email address"
           target="blank"
-          href="mailto:antoniomgoulao@gmail.com">
+          href="mailto:antoniomgoulao@gmail.com"
+          sx={{
+            marginX: 0.25
+          }}>
           <Mail color="secondary" />
         </Link>
         <Link
-          marginX={0.25}
           aria-label="personal website"
           target="blank"
-          href="https://antoniogoulao.dev">
+          href="https://antoniogoulao.dev"
+          sx={{
+            marginX: 0.25
+          }}>
           <Language color="secondary" />
         </Link>
       </Box>

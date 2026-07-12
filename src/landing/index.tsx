@@ -57,7 +57,6 @@ export const LandingPage = () => {
         bgcolor: 'background.default',
       }}>
       <Hero onBrowse={() => gridRef.current?.scrollIntoView({ behavior: 'smooth' })} />
-
       <Box sx={{ px: { xs: 2, md: 4 }, pt: 4 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', mb: 2 }}>
           <Typography
@@ -65,7 +64,9 @@ export const LandingPage = () => {
             sx={{ textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: '1.15rem' }}>
             {t('pickARoad')}
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" sx={{
+            color: "text.secondary"
+          }}>
             {t('ridesCount', { rides: videos.length, regions: regions.length })}
           </Typography>
         </Box>
@@ -87,12 +88,14 @@ export const LandingPage = () => {
           placeholder={t('searchPlaceholder')}
           size="small"
           sx={{ width: '100%', maxWidth: 420, mb: 3 }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Search />
-              </InputAdornment>
-            ),
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }
           }}
         />
 
@@ -164,7 +167,6 @@ export const LandingPage = () => {
           ))}
         </Box>
       </Box>
-
       <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}>
         <Button variant="text" onClick={navigateToPrivacy} sx={{ color: 'text.secondary' }}>
           {t('privacyPolicy')}

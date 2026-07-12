@@ -1,6 +1,6 @@
 import {
-  PauseCircleOutline,
-  PlayCircleOutline,
+  PauseCircleOutlineOutlined,
+  PlayCircleOutlineOutlined,
   VolumeUp,
   VolumeOff,
   VisibilityOffOutlined,
@@ -79,7 +79,12 @@ export const NavBar = () => {
         sx={{ flex: 1, justifyContent: 'space-between', paddingBottom: 1 }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box display="flex" flexDirection="column" alignItems="center">
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center"
+            }}>
             <IconButton
               aria-label="hide controls bar"
               onClick={() => setShowBottomBar(false)}
@@ -117,7 +122,7 @@ export const NavBar = () => {
               '&:hover': { bgcolor: 'primary.dark' },
             }}
           >
-            {isRadioPlay ? <PauseCircleOutline /> : <PlayCircleOutline />}
+            {isRadioPlay ? <PauseCircleOutlineOutlined /> : <PlayCircleOutlineOutlined />}
           </IconButton>
           <RadioSelector />
           <Volume />
