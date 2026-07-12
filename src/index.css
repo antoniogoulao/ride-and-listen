@@ -22,3 +22,20 @@ code {
   transform: translate(-50%, -50%);
   z-index: 0;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-img {
+    animation: kenburns 28s ease-in-out infinite alternate;
+  }
+  .onair-dot {
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+}
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}

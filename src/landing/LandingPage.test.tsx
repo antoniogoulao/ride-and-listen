@@ -3,8 +3,13 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { LandingPage } from './index';
 import { VIDEOS } from '../videos';
 
+const { navigateToVideo } = vi.hoisted(() => ({ navigateToVideo: vi.fn() }));
 vi.mock('../hooks/useNavigate', () => ({
-  useNavigate: () => ({ navigateToVideo: vi.fn(), navigateToPrivacy: vi.fn() }),
+  useNavigate: () => ({
+    navigateToVideo,
+    navigateToLanding: vi.fn(),
+    navigateToPrivacy: vi.fn(),
+  }),
 }));
 
 const theme = createTheme();
@@ -67,5 +72,18 @@ describe('LandingPage', () => {
     expect(
       screen.getByRole('button', { name: /privacy policy/i })
     ).toBeInTheDocument();
+  });
+
+  test('hero renders translated headline and CTAs', () => {
+    renderWithTheme(<LandingPage />);
+    expect(screen.getByText(/Ride Portugal & Spain/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /start riding/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /browse rides/i })).toBeInTheDocument();
+  });
+
+  test('start riding navigates to the first video', () => {
+    renderWithTheme(<LandingPage />);
+    fireEvent.click(screen.getByRole('button', { name: /start riding/i }));
+    expect(navigateToVideo).toHaveBeenCalledWith(VIDEOS[0].videoId);
   });
 });

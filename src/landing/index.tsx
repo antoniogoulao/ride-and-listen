@@ -9,23 +9,13 @@ import {
   InputAdornment,
   TextField,
   Typography,
-  useTheme,
 } from '@mui/material';
-import {
-  amber,
-  green,
-  indigo,
-  lightBlue,
-  orange,
-  purple,
-  red,
-  teal,
-  yellow,
-} from '@mui/material/colors';
+import { amber, green, indigo, lightBlue, orange, purple, red, teal } from '@mui/material/colors';
 import { useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { videosAtom } from '../atoms';
 import { useNavigate } from '../hooks/useNavigate';
+import { Hero } from './Hero';
 
 const REGION_COLORS: Record<string, { bg: string; text: string }> = {
   Alentejo: { bg: orange[700], text: '#fff' },
@@ -42,7 +32,7 @@ export const LandingPage = () => {
   const videos = useAtomValue(videosAtom);
   const { navigateToVideo, navigateToPrivacy } = useNavigate();
   const [query, setQuery] = useState('');
-  const theme = useTheme();
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const filtered = videos.filter(({ name, keywords }) => {
     if (!query) return true;
@@ -61,21 +51,7 @@ export const LandingPage = () => {
         pb: '80px',
         bgcolor: 'background.default',
       }}>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          py: 4,
-        }}>
-        <img src="/logo192.png" alt="Ride & Listen logo" style={{ height: 80, marginBottom: 16 }} />
-        <Typography
-          variant="h3"
-          fontWeight="bold"
-          sx={{ color: theme.palette.mode === 'light' ? lightBlue[900] : yellow[700] }}>
-          Ride & Listen
-        </Typography>
-      </Box>
+      <Hero onBrowse={() => gridRef.current?.scrollIntoView({ behavior: 'smooth' })} />
 
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3, px: 2 }}>
         <TextField
@@ -93,7 +69,7 @@ export const LandingPage = () => {
         />
       </Box>
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <Box ref={gridRef} sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {filtered.map(({ videoId, name, region }) => {
           const colors = REGION_COLORS[region] ?? { bg: '#888', text: '#fff' };
           return (
