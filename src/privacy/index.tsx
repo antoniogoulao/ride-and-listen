@@ -1,12 +1,14 @@
 import { ArrowBack, Delete, VerifiedUser } from '@mui/icons-material';
 import { Box, Button, Card, IconButton, Link, Typography } from '@mui/material';
 import { useSetAtom } from 'jotai';
+import { useTranslation } from 'react-i18next';
 import { radioVolumeAtom, selectedRadioAtom } from '../atoms';
 import { useNavigate } from '../hooks/useNavigate';
 import { RADIOS } from '../radios';
 
 export const PrivacyPolicy = () => {
   const { navigateToLanding } = useNavigate();
+  const { t } = useTranslation();
   const setSelectedRadio = useSetAtom(selectedRadioAtom);
   const setVolume = useSetAtom(radioVolumeAtom);
 
@@ -44,32 +46,25 @@ export const PrivacyPolicy = () => {
           <VerifiedUser sx={{ fontSize: 40 }} />
         </Box>
         <Typography variant="h4" fontWeight="bold" mb={3}>
-          Privacy Policy
+          {t('privacyPolicy')}
         </Typography>
         <Card variant="outlined" sx={{ maxWidth: 600, width: '100%', p: 3, mb: 3 }}>
-          <Typography paragraph>
-            This site does not collect, store, or share any personal data. No cookies or
-            tracking technologies are used.
-          </Typography>
-          <Typography paragraph>
-            Your last played radio station and volume preference are saved in your
-            browser's localStorage to remember your settings between visits. This data
-            never leaves your device.
-          </Typography>
+          <Typography paragraph>{t('privacyNoData')}</Typography>
+          <Typography paragraph>{t('privacyLocalStorage')}</Typography>
           <Typography>
-            Video playback uses YouTube embeds, which are subject to{' '}
+            {t('privacyYoutubePre')}{' '}
             <Link
               href="https://policies.google.com/privacy"
               target="_blank"
               rel="noopener"
             >
-              YouTube's Privacy Policy
+              {t('privacyYoutubeLink')}
             </Link>
             .
           </Typography>
         </Card>
         <Button variant="contained" color="error" startIcon={<Delete />} onClick={handleClearData}>
-          Clear local data
+          {t('clearLocalData')}
         </Button>
       </Box>
     </Box>

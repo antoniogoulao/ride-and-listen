@@ -30,6 +30,13 @@ const en = {
   privacyPolicy: 'Privacy Policy',
   hide: 'Hide',
   language: 'Language',
+  privacyNoData:
+    'This site does not collect, store, or share any personal data. No cookies or tracking technologies are used.',
+  privacyLocalStorage:
+    "Your last played radio station and volume preference are saved in your browser's localStorage to remember your settings between visits. This data never leaves your device.",
+  privacyYoutubePre: 'Video playback uses YouTube embeds, which are subject to',
+  privacyYoutubeLink: "YouTube's Privacy Policy",
+  clearLocalData: 'Clear local data',
 };
 
 const resources = {
@@ -51,6 +58,13 @@ const resources = {
       privacyPolicy: 'Política de Privacidade',
       hide: 'Esconder',
       language: 'Idioma',
+      privacyNoData:
+        'Este site não recolhe, armazena nem partilha quaisquer dados pessoais. Não são usados cookies nem tecnologias de rastreio.',
+      privacyLocalStorage:
+        'A última rádio ouvida e o volume ficam guardados no localStorage do teu navegador para lembrar as tuas preferências entre visitas. Estes dados nunca saem do teu dispositivo.',
+      privacyYoutubePre: 'A reprodução de vídeo usa incorporações do YouTube, sujeitas à',
+      privacyYoutubeLink: 'Política de Privacidade do YouTube',
+      clearLocalData: 'Apagar dados locais',
     },
   },
   'pt-BR': {
@@ -69,6 +83,13 @@ const resources = {
       privacyPolicy: 'Política de Privacidade',
       hide: 'Esconder',
       language: 'Idioma',
+      privacyNoData:
+        'Este site não coleta, armazena nem compartilha nenhum dado pessoal. Não são usados cookies nem tecnologias de rastreamento.',
+      privacyLocalStorage:
+        'A última rádio tocada e o volume ficam salvos no localStorage do seu navegador para lembrar suas preferências entre visitas. Esses dados nunca saem do seu dispositivo.',
+      privacyYoutubePre: 'A reprodução de vídeo usa incorporações do YouTube, sujeitas à',
+      privacyYoutubeLink: 'Política de Privacidade do YouTube',
+      clearLocalData: 'Apagar dados locais',
     },
   },
   'es-ES': {
@@ -87,6 +108,13 @@ const resources = {
       privacyPolicy: 'Política de privacidad',
       hide: 'Ocultar',
       language: 'Idioma',
+      privacyNoData:
+        'Este sitio no recopila, almacena ni comparte ningún dato personal. No se usan cookies ni tecnologías de rastreo.',
+      privacyLocalStorage:
+        'La última emisora reproducida y el volumen se guardan en el localStorage de tu navegador para recordar tus preferencias entre visitas. Estos datos nunca salen de tu dispositivo.',
+      privacyYoutubePre: 'La reproducción de vídeo usa contenido incrustado de YouTube, sujeto a la',
+      privacyYoutubeLink: 'Política de Privacidad de YouTube',
+      clearLocalData: 'Borrar datos locales',
     },
   },
   'fr-FR': {
@@ -105,6 +133,13 @@ const resources = {
       privacyPolicy: 'Politique de confidentialité',
       hide: 'Masquer',
       language: 'Langue',
+      privacyNoData:
+        "Ce site ne collecte, ne stocke ni ne partage aucune donnée personnelle. Aucun cookie ni technologie de suivi n'est utilisé.",
+      privacyLocalStorage:
+        'Votre dernière station écoutée et le volume sont enregistrés dans le localStorage de votre navigateur pour mémoriser vos préférences entre les visites. Ces données ne quittent jamais votre appareil.',
+      privacyYoutubePre: 'La lecture vidéo utilise des intégrations YouTube, soumises à la',
+      privacyYoutubeLink: 'Politique de confidentialité de YouTube',
+      clearLocalData: 'Effacer les données locales',
     },
   },
 };

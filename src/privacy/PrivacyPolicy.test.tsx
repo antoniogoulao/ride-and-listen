@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeProvider, createTheme } from '@mui/material';
+import i18n from '../i18n';
 import { PrivacyPolicy } from './index';
 
 const navigateToLandingMock = vi.fn();
@@ -48,6 +49,15 @@ describe('PrivacyPolicy', () => {
     renderWithTheme(<PrivacyPolicy />);
     fireEvent.click(screen.getByLabelText('back to landing page'));
     expect(navigateToLandingMock).toHaveBeenCalledTimes(1);
+  });
+
+  test('translates the page when the language changes', async () => {
+    await i18n.changeLanguage('pt-PT');
+    renderWithTheme(<PrivacyPolicy />);
+    expect(screen.getByText('Política de Privacidade')).toBeInTheDocument();
+    expect(screen.getByText(/não recolhe, armazena nem partilha/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /apagar dados locais/i })).toBeInTheDocument();
+    await i18n.changeLanguage('en-US');
   });
 
   test('clear local data button removes RECENTLY_PLAYED and VOLUME from localStorage', () => {
