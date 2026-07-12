@@ -17,7 +17,7 @@ export const LanguageSelector = () => {
   return (
     <FormControl sx={{ margin: 1, minWidth: 150 }} size="small">
       <Select
-        value={resolveLocale(i18n.language ?? 'en-US')}
+        value={resolveLocale(i18n.language)}
         onChange={(event) => i18n.changeLanguage(event.target.value)}
         inputProps={{ 'aria-label': t('language') }}
       >
